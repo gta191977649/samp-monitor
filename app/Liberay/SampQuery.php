@@ -81,11 +81,13 @@ class SampQuery {
 
         $serverInfo['hostname'] = (string) fread($this->sock, $strLen);
 
+        $serverInfo['gamemode'] = "";
         $strLen = ord(fread($this->sock, 4));
-        $serverInfo['gamemode'] = (string) fread($this->sock, $strLen);
+        if($strLen) $serverInfo['gamemode'] = (string) fread($this->sock, $strLen);
 
+        $serverInfo['map'] = "";
         $strLen = ord(fread($this->sock, 4));
-        $serverInfo['map'] = (string) fread($this->sock, $strLen);
+        if($strLen) $serverInfo['map'] = (string) fread($this->sock, $strLen);
         //UTF8处理
 
         $serverInfo['gamemode'] = iconv("GB2312","UTF-8",$serverInfo['gamemode']);
