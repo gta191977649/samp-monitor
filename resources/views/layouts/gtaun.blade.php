@@ -34,7 +34,7 @@
 <div id="footer">
 	<div class="wrapper">
 		<p>Powered by <strong><a href="https://project-sparrow.ml/blog">禾雀飛翔 | Episodes</a></strong></p>
-        <p>Theme Designed By GTAUN.NET</p>
+        <p>主题创意来自于: GTAUN.NET 二次开发 By Episodes</p>
   	</div>
 </div>
     {{-- JS --}}
