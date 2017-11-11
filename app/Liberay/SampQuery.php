@@ -90,9 +90,9 @@ class SampQuery {
         if($strLen) $serverInfo['map'] = (string) fread($this->sock, $strLen);
         //UTF8处理
 
-        $serverInfo['gamemode'] = iconv("GB2312","UTF-8",$serverInfo['gamemode']);
-        $serverInfo['hostname'] = iconv("GB2312","UTF-8",$serverInfo['hostname']);
-        $serverInfo['map'] = iconv("GB2312","UTF-8",$serverInfo['map']);
+        $serverInfo['gamemode'] = iconv("GBK","UTF-8//IGNORE",$serverInfo['gamemode']);
+        $serverInfo['hostname'] = iconv("GBK","UTF-8//IGNORE",$serverInfo['hostname']);
+        $serverInfo['map'] = iconv("GBK","UTF-8//IGNORE",$serverInfo['map']);
         //$serverInfo['hostname'] = utf8_encode($serverInfo['hostname']);
         
         //$serverInfo['gamemode'] = utf8_encode($serverInfo['gamemode']);

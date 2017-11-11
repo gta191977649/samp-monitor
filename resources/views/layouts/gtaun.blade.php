@@ -33,7 +33,7 @@
 </div>
 <div id="footer">
 	<div class="wrapper">
-		<p>Powered by <strong><a href="http://www.crystalglass.tk">禾雀飛翔 | Episodes</a></strong></p>
+		<p>Powered by <strong><a href="https://project-sparrow.ml/blog">禾雀飛翔 | Episodes</a></strong></p>
         <p>Theme Designed By GTAUN.NET</p>
   	</div>
 </div>
