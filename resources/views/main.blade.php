@@ -28,7 +28,7 @@
     <script src="http://apps.bdimg.com/libs/angular-route/1.3.13/angular-route.js"></script>
 
     @foreach($servers as $server)
-	<tr id="App{{$server->id}}" ng-app="statusQuery{{$server->id}}" ng-controller="customersCtrl{{$server->id}}">
+	<tr id="App{{$server->id}}"  ng-controller="customersCtrl{{$server->id}}">
         <td><p><a href="samp://{{ $server->ip }}:{{ $server->port }}"><img src="{{ asset('css/samp.gif') }}" alt="" border="0"> <% hostname %>  </a></p></td>
 	    <td>{{ $server->ip }}:{{ $server->port }}</td>
 	    <td><% gamemode %></td>
