@@ -60,7 +60,7 @@ strong
 	list-style: none;
 	position: relative;
 	top: 54px;
-	
+	right:5%;
 }
 
 #header ul li
@@ -195,8 +195,7 @@ strong
 	min-width: 700px;
 	padding-top:50px;
 	padding-bottom:50px;
-
-
+	height: 100vh;
 }
 
 #pagebody table

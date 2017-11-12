@@ -18,8 +18,10 @@ class CreateServersTable extends Migration
             $table->text('name');
             $table->text('ip');
             $table->text('port');
-            $table->text('description');
-            $table->integer('rate');
+            $table->text('description')->nullable();
+            $table->text('gamemode');
+            $table->boolean('hide')->default(0);
+            $table->integer('rate')->default(0);
             $table->integer('user_id');
             $table->timestamps();
         });

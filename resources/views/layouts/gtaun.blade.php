@@ -20,7 +20,6 @@
 			<li class="current"><a href="{{ route('index') }}" title="所有运营中的服务器的列表">服务器</a>
             </li>
 		    <li><a href="files.php" title="下载客户端">下载</a></li>
-			<li><a href="forum.php" title="访问社区">社区</a></li>
 			<li><a href="about.php" title="关于我们">关于</a></li>
 	  </ul>
 	</div>

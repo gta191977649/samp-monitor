@@ -4,10 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class server extends Model
+class Server extends Model
 {
     //
     protected $fillable = [
-        'name', 'ip', 'port',
+        'id','name', 'ip', 'port','gamemode','description','user_id','hide'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

@@ -1,0 +1,24 @@
+body {
+    font-family: "SimSun";
+    font-size: 20px;
+}
+
+.sidebar ul {
+    padding: 0px;
+
+
+}
+
+.sidebar ul li{
+    list-style: none;
+    padding-left: 15px;
+    padding-top:5px;
+    padding-bottom: 5px;
+}
+.sidebar ul li a{
+    color: #555555;
+}
+.sidebar ul li:hover{
+    
+    background:#F5F5F5; 
+}
