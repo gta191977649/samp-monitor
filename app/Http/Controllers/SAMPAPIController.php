@@ -27,6 +27,23 @@ class SAMPAPIController extends Controller
             return $query->getOnlinePlayers();
         }
     }
-    
+    public function playerList($ip,$port)
+    {
+        $query = new SampQuery($ip,$port);
+
+        if ($query->connect()) {
+
+            return $query->getDetailedPlayers();
+        }
+    }
+    public function ping($ip,$port)
+    {
+        $query = new SampQuery($ip,$port);
+
+        if ($query->connect()) {
+
+            return $query->getPing();
+        }
+    }
     
 }
