@@ -24,8 +24,8 @@
     @endif
 
 
-    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
-    <script src="http://apps.bdimg.com/libs/angular-route/1.3.13/angular-route.js"></script>
+    <script src="{{ asset('js/angular.min.js') }}"></script>
+    <script src="{{ asset('js/angular-route.js') }}"></script>
 
     @foreach($servers as $server)
 	<tr id="App{{$server->id}}"  ng-controller="customersCtrl{{$server->id}}">

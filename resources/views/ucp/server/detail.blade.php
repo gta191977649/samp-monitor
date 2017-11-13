@@ -83,8 +83,8 @@
         </div>
     </div>
     <!-- JS -->
-    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
-    <script src="http://apps.bdimg.com/libs/angular-route/1.3.13/angular-route.js"></script>
+    <script src="{{ asset('js/angular.min.js') }}"></script>
+    <script src="{{ asset('js/angular-route.js') }}"></script>
     <script>    
         angular.module('statusQuery', [], function($interpolateProvider) {
             //解决该死的blade引擎和angularjs的syntax冲突
