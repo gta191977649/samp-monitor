@@ -91,7 +91,7 @@
             <!-- 统计图 玩家数 -->
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">统计 - 玩家</div>
+                    <div class="panel-heading">统计 - 玩家 <span class="label label-success">{{$server->status()->select('created_at')->orderBy('created_at', 'desc')->first()->created_at}}</span></div>
                     @if($server->status->count())
                         <canvas id="sbmpPlayers" width="100%" height="20"></canvas>
                     @else
@@ -103,7 +103,7 @@
             <!-- 统计图 Ping -->
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">统计 - Ping</div>
+                    <div class="panel-heading">统计 - Ping <span class="label label-success">{{$server->status()->select('created_at')->orderBy('created_at', 'desc')->first()->created_at}}</span></div>
                     @if($server->status->count())
                         <canvas id="sbmpPing" width="100%" height="20"></canvas>
                     @else
@@ -114,7 +114,7 @@
 
         </div>
     </div>
-   
+  
 @endsection
 
 @section('js')
@@ -175,20 +175,21 @@
     </script>
     <!--图表的JS -->
     <!--图表 玩家 -->
+    <!-- SELECT * FROM `status` WHERE DATE(`created_at`)=CURDATE() -->
     <script>
         var ctx = document.getElementById("sbmpPlayers").getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: [
-                    @foreach ($server->status->sortByDesc('created_at')->take(20) as $s)
-                        "{{$s->created_at}}",
+                    @foreach ($server->status()->whereDate('created_at', DB::raw('CURDATE()'))->get() as $s)
+                        "{{$s->created_at->format('g:i A')}}",
                     @endforeach
                 ],
                 datasets: [{
                     label: '玩家数',
                     data: [
-                        @foreach ($server->status->sortByDesc('created_at')->take(20) as $s)
+                        @foreach ($server->status()->whereDate('created_at', DB::raw('CURDATE()'))->get() as $s)
                         {{$s->player}},
                         @endforeach
                     ],
@@ -219,14 +220,14 @@
             type: 'line',
             data: {
                 labels: [
-                    @foreach ($server->status->sortByDesc('created_at')->take(20) as $s)
-                        "{{$s->created_at}}",
+                    @foreach ($server->status()->whereDate('created_at', DB::raw('CURDATE()'))->get() as $s)
+                        "{{$s->created_at->format('g:i A')}}",
                     @endforeach
                 ],
                 datasets: [{
                     label: '延迟',
                     data: [
-                        @foreach ($server->status->sortByDesc('created_at')->take(20) as $s)
+                        @foreach ($server->status()->whereDate('created_at', DB::raw('CURDATE()'))->get() as $s)
                         {{$s->ping}},
                         @endforeach
                     ],
