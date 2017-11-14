@@ -77,4 +77,12 @@ class ServerController extends Controller
         
         return view("ucp.server.detail",compact("server"));
     }
+
+
+    public function fontedDetail($id)
+    {
+        $server =Server::find($id);
+        
+        return view("ucp.server.detail",compact("server"));
+    }
 }

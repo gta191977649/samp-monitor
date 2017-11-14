@@ -77,12 +77,38 @@
                 </div>
             </div>
 
+            <!-- 统计图 玩家数 -->
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">统计 - 玩家</div>
+                    @if($server->status->count())
+                        <canvas id="sbmpPlayers" width="100%" height="20"></canvas>
+                    @else
+                        <h3 class="text-center" ng-if="!playerlist.length">暂无数据</h3>
+                    @endif
+                </div>
+            </div>
             
-
+            <!-- 统计图 Ping -->
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">统计 - Ping</div>
+                    @if($server->status->count())
+                        <canvas id="sbmpPing" width="100%" height="20"></canvas>
+                    @else
+                        <h3 class="text-center" ng-if="!playerlist.length">暂无数据</h3>
+                    @endif
+                </div>
+            </div>
 
         </div>
     </div>
+   
+@endsection
+
+@section('js')
     <!-- JS -->
+    <script src="{{ asset('js/Chart.min.js') }}"></script>
     <script src="{{ asset('js/angular.min.js') }}"></script>
     <script src="{{ asset('js/angular-route.js') }}"></script>
     <script>    
@@ -136,6 +162,81 @@
         angular.bootstrap(document.getElementById("sbmpDetail"), ['statusQuery']);
         
     </script>
-
-
+    <!--图表的JS -->
+    <!--图表 玩家 -->
+    <script>
+        var ctx = document.getElementById("sbmpPlayers").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [
+                    @foreach ($server->status->sortByDesc('created_at')->take(20) as $s)
+                        "{{$s->created_at}}",
+                    @endforeach
+                ],
+                datasets: [{
+                    label: '玩家数',
+                    data: [
+                        @foreach ($server->status->sortByDesc('created_at')->take(20) as $s)
+                        {{$s->player}},
+                        @endforeach
+                    ],
+                    backgroundColor: [
+                        'rgba(41, 128, 185,0)',
+                    ],
+                    borderColor: [
+                        'rgba(41, 128, 185,255)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+    <!--图表 Ping -->
+    <script>
+        var ctx = document.getElementById("sbmpPing").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [
+                    @foreach ($server->status->sortByDesc('created_at')->take(20) as $s)
+                        "{{$s->created_at}}",
+                    @endforeach
+                ],
+                datasets: [{
+                    label: '延迟',
+                    data: [
+                        @foreach ($server->status->sortByDesc('created_at')->take(20) as $s)
+                        {{$s->ping}},
+                        @endforeach
+                    ],
+                    backgroundColor: [
+                        'rgba(41, 128, 185,0)',
+                    ],
+                    borderColor: [
+                        'rgba(41, 128, 185,255)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
 @endsection

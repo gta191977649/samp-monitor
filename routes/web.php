@@ -27,6 +27,9 @@ Route::get('/api/samp/info/{ip}/port/{port}','SAMPAPIController@info')->name('ap
 Route::get('/api/samp/player/{ip}/port/{port}','SAMPAPIController@player')->name('api.player');
 Route::get('/api/samp/playerlist/{ip}/port/{port}','SAMPAPIController@playerList')->name('api.player.list');
 Route::get('/api/samp/ping/{ip}/port/{port}','SAMPAPIController@ping')->name('api.ping');
+
+Route::get('/server/detail/{id}', 'ServerController@fontedDetail')->name('server.detail');
+
 //Route::get('/api/server/players/{ip}/port/{port}','SAMPAPIController@test')->name('test');
 
 Route::group(['middleware'=>'auth'],function(){
