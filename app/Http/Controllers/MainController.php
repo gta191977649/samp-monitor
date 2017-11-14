@@ -14,7 +14,7 @@ class MainController extends Controller
     }
     public function gtaun()
     {
-        $servers = Server::get();
+        $servers = Server::where("hide" , 0)->get();
         return view('un',compact('servers'));
     }
 
