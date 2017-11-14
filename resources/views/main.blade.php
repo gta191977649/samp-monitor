@@ -16,7 +16,7 @@
 
         <tbody>
         <tr>
-            <th >服务器</th>
+            <th>服务器</th>
             <th>地址</th>
             <th>模式</th>
             <th>玩家</th>
@@ -27,7 +27,7 @@
     <script src="{{ asset('js/angular-route.js') }}"></script>
     @foreach($servers as $server)
 	<tr id="App{{$server->id}}"  ng-controller="customersCtrl{{$server->id}}">
-        <td><p><a href="samp://{{ $server->ip }}:{{ $server->port }}"><img src="{{ asset('css/samp.gif') }}" alt="" border="0"> <% hostname %>  </a></p></td>
+        <td><p><a href="{{route('server.detail',['id' => $server->id])}}"><img src="{{ asset('css/samp.gif') }}" alt="" border="0"> <% hostname %>  </a></p></td>
 	    <td>{{ $server->ip }}:{{ $server->port }}</td>
 	    <td><% gamemode %></td>
 	    <td><% players %></td>

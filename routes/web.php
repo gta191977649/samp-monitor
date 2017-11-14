@@ -12,7 +12,7 @@
 */
 
 Route::get('/','MainController@index')->name('index');
-Route::get('/un','MainController@gtaun')->name('index');
+Route::get('/un','MainController@gtaun')->name('gtaun');
 //Route::get('/cn','MainController@gtaun')->name('index');
 
 

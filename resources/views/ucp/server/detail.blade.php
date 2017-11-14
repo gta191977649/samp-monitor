@@ -6,6 +6,11 @@
         <div class="col-md-10"  id="sbmpDetail"  ng-controller="sbmpQueryController">
         <h1><% hostname %> - 详细信息</h1>
         <hr/>
+        <div class="col-md-12" style="margin-bottom:10px;">
+            <a href="samp://{{$server->ip}}:{{$server->port}}" class="btn btn-success"><i class="fa fa-gamepad" aria-hidden="true"></i>
+进去玩</a>
+        </div>
+        
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">基本信息</div>
