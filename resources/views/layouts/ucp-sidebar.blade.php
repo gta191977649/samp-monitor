@@ -1,4 +1,5 @@
 
+@if(!Auth::guest())
 <div class="col-md-2 sidebar">
     <ul class="panel panel-default">
         <div class="panel-heading">帐号</div>
@@ -19,3 +20,4 @@
         <li><a href="#">API</a></li>
     </ul>
 </div>
+@endif
