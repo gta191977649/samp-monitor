@@ -24,6 +24,8 @@ class SampQuery {
      *	@param $server server hostname
      *	@param $port port of the server
      */
+    
+    
     public function __construct($server, $port=7777) {
 		// <editor-fold defaultstate="collapsed" desc="Constructor">
         $this->server = $server;

@@ -15,4 +15,9 @@ class Server extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function status()
+    {
+        return $this->hasMany("App\SeverStatus");
+    }
 }

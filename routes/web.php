@@ -31,6 +31,7 @@ Route::get('/api/samp/ping/{ip}/port/{port}','SAMPAPIController@ping')->name('ap
 
 Route::group(['middleware'=>'auth'],function(){
     Route::get('/home', 'MainController@index')->name('home');
+    Route::get('/update', 'MainController@update')->name('home');
     Route::get('/ucp', 'UCPController@index')->name('ucp.index');
     //UCP SERVER
     Route::get('/ucp/server/', 'ServerController@index')->name('ucp.server.index');
