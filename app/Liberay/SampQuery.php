@@ -167,7 +167,7 @@ class SampQuery {
             $player['playerid'] = (integer) ord(fread($this->sock, 1));
 
             $strLen = ord(fread($this->sock, 1));
-            $player['nickname'] = (string) fread($this->sock, $strLen);
+            $player['nickname'] =  iconv("GBK","UTF-8//IGNORE",(string) fread($this->sock, $strLen) );
 
             $player['score'] = (integer) $this->toInt(fread($this->sock, 4));
             $player['ping'] = (integer) $this->toInt(fread($this->sock, 4));
