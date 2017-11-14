@@ -130,7 +130,7 @@ class SampQuery {
                 $strLen = ord(fread($this->sock, 1));
                 $players[$i] = array
                 (
-                    "name" => (string) fread($this->sock, $strLen),
+                    "name" => iconv("GBK","UTF-8//IGNORE",(string) fread($this->sock, $strLen)),
                     "score" => (integer) $this->toInt(fread($this->sock, 4)),
                 );
             }
