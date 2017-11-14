@@ -24,7 +24,8 @@ class MainController extends Controller
 
     public function update()
     {
-        
+        return 'FORBBIDEN!';
+        /*
         $servers = Server::get();
         
     
@@ -56,7 +57,9 @@ class MainController extends Controller
                 continue;
                 
             }    
-        }       
+        }    
+        */
+           
     }
 
 } 
