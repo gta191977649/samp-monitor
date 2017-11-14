@@ -28,7 +28,9 @@
                                 </tr>
                                 <tr>
                                     <td>地址:</td>
-                                    <td>{{$server->ip}}:{{$server->port}}</td>
+                                    <td>{{$server->ip}}:{{$server->port}}
+                                    <img src="https://ipfind.co/flag?ip={{$server->ip}}&auth=05a106a4-0d26-4a2f-8f1e-b606f7affa2d" width="25" height="25">
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>状态:</td>
