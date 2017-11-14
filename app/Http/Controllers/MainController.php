@@ -24,9 +24,10 @@ class MainController extends Controller
 
     public function update()
     {
-        /*
+        
         $servers = Server::get();
-
+        
+    
         foreach($servers as $server)
         {
             $query = new SampQuery($server->ip,$server->port);
@@ -42,6 +43,8 @@ class MainController extends Controller
                     "ping" => $ping,
                     "timeout" => false,
                 ]); 
+                
+                continue;
             }
             else
             {
@@ -50,11 +53,10 @@ class MainController extends Controller
                     "ping" => 0,
                     "timeout" => true,
                 ]);
+                continue;
                 
             }    
-        }
-        */
-         
+        }       
     }
 
 } 

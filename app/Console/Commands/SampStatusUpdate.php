@@ -39,48 +39,36 @@ class SampStatusUpdate extends Command
      */
     public function handle()
     {
-        //
-        $query = new SampQuery("127.0.0.1","7777");
-
-        $info = $query->getInfo();
-        $ping = $query->getPing();
-
-        
         $servers = Server::get();
-
-
         foreach($servers as $server)
         {
-            
-            $servers = Server::get();
-            
-            foreach($servers as $server)
+            $query = new SampQuery($server->ip,$server->port);
+
+            if($query->connect()) //如果在线
             {
-                $query = new SampQuery($server->ip,$server->port);
+                $info = $query->getInfo();
+                $ping = $query->getPing();
     
-                if($query->connect()) //如果在线
-                {
-                    $info = $query->getInfo();
-                    $ping = $query->getPing();
-        
-    
-                    $server->status()->create([
-                        "player" => $info["players"],
-                        "ping" => $ping,
-                        "timeout" => false,
-                    ]); 
-                }
-                else
-                {
-                    $server->status()->create([
-                        "player" => 0,
-                        "ping" => 0,
-                        "timeout" => true,
-                    ]);
-                    
-                }    
+
+                $server->status()->create([
+                    "player" => $info["players"],
+                    "ping" => $ping,
+                    "timeout" => false,
+                ]); 
+                
+                continue;
             }
-        }
+            else
+            {
+                $server->status()->create([
+                    "player" => 0,
+                    "ping" => 0,
+                    "timeout" => true,
+                ]);
+                continue;
+                
+            }    
+        }  
  
     }
 }
