@@ -36,21 +36,35 @@
 	    <td><% status %></td>
 	</tr>
     <script>
-
         angular.module('statusQuery{{$server->id}}', [], function($interpolateProvider) {
             //解决该死的blade引擎和angularjs的syntax冲突
             $interpolateProvider.startSymbol('<%');
             $interpolateProvider.endSymbol('%>');
         }).controller('customersCtrl{{$server->id}}', function($scope, $http) {
+            $scope.hostname = "{{$server->name}}"; //使用数据库里存储的服务器名称
+            $scope.gamemode ="{{$server->gamemode}}";
+
             $http.get("{{ route('api.info',['ip' => $server->ip, 'port' => $server->port]) }}").then(function mySuccess(response) {
-                $scope.players = response.data.players + "/" + response.data.maxplayers;
-                $scope.gamemode = response.data.gamemode;
-                $scope.hostname = response.data.hostname;
-                $scope.status = "在线";
+                
+                if(response.data != "-1")
+                {
+                    $scope.players = response.data.players + "/" + response.data.maxplayers;
+                    $scope.gamemode = response.data.gamemode;
+                    $scope.hostname = response.data.hostname;
+                    $scope.status = "在线";
+                }
+                else
+                {
+                    $scope.players = "超时" ;
+                    $scope.gamemode = "{{$server->gamemode}}";
+                    $scope.hostname = "{{$server->name}}"; //使用数据库里存储的服务器名称
+                    $scope.status = "超时";
+                
+                }
 
             }, function myError(response) {
                 $scope.players = "获取失败";
-                $scope.gamemode = "获取失败";
+                $scope.gamemode = "{{$server->gamemode}}";
                 $scope.hostname = "{{$server->name}}"; //使用数据库里存储的服务器名称
                 $scope.status = "超时";
                 

@@ -25,6 +25,8 @@ class SAMPAPIController extends Controller
 
             return $query->getInfo();
         }
+       
+        return "-1";
     }
     public function player($ip,$port)
     {
@@ -34,6 +36,8 @@ class SAMPAPIController extends Controller
 
             return $query->getOnlinePlayers();
         }
+
+        return "-1";
     }
     public function playerList($ip,$port)
     {
@@ -43,6 +47,8 @@ class SAMPAPIController extends Controller
 
             return $query->getDetailedPlayers();
         }
+
+        return "-1";
     }
     public function ping($ip,$port)
     {
@@ -52,6 +58,8 @@ class SAMPAPIController extends Controller
 
             return $query->getPing();
         }
+
+        return "-1";
     }
     
 }

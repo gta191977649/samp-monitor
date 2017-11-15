@@ -42,7 +42,7 @@
                                 </tr>
                                 <tr>
                                     <td>Ping 平均(基于本机房):</td>
-                                    <td><% {{round($server->status->avg('ping'))}} %>ms</td>
+                                    <td>{{$server->status->count() ? round($server->status->avg('ping'))."ms" : "暂无统计"}}</td>
                                 </tr>
                                 <tr>
                                     <td>玩家:</td>
@@ -50,11 +50,11 @@
                                 </tr>
                                 <tr>
                                     <td>平均玩家:</td>
-                                    <td>{{$server->status->avg('player')}}</td>
+                                    <td>{{$server->status->count() ? $server->status->avg('player') : "暂无统计"}}</td>
                                 </tr>
                                 <tr>
                                     <td>最大玩家记录:</td>
-                                    <td>{{$server->status->max('player')}}</td>
+                                    <td>{{$server->status->count() ? $server->status->max('player') : "暂无统计"}}</td>
                                 </tr>
                                 <tr>
                                     <td>游戏模式:</td>
@@ -92,6 +92,7 @@
                 </div>
             </div>
 
+            @if($server->status->count())
             <!-- 统计图 玩家数 -->
             <div class="col-md-12">
                 <div class="panel panel-default">
@@ -115,7 +116,14 @@
                     @endif
                 </div>
             </div>
-
+            @else
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">统计</span></div>
+                    <h3 class="text-center" ng-if="!playerlist.length">暂无数据</h3>
+                </div>
+            </div>
+            @endif
         </div>
     </div>
   
@@ -137,10 +145,21 @@
             
             $scope.getData = function(){ 
                 $http.get("{{ route('api.info',['ip' => $server->ip, 'port' => $server->port]) }}").then(function mySuccess(response) {
-                    $scope.players = response.data.players  + "/" + response.data.maxplayers;
-                    $scope.gamemode = response.data.gamemode;
-                    $scope.hostname = response.data.hostname;
-                    $scope.status = "在线";
+                    if(response.data != "-1")
+                    {
+                        $scope.players = response.data.players + "/" + response.data.maxplayers;
+                        $scope.gamemode = response.data.gamemode;
+                        $scope.hostname = response.data.hostname;
+                        $scope.status = "在线";
+                    }
+                    else
+                    {
+                        $scope.players = "超时" ;
+                        $scope.gamemode = "{{$server->gamemode}}";
+                        $scope.hostname = "{{$server->name}}"; //使用数据库里存储的服务器名称
+                        $scope.status = "超时";
+                    
+                    }
 
                 }, function myError(response) {
                     $scope.players = "获取失败";
@@ -152,14 +171,24 @@
 
                 //获取延迟
                 $http.get("{{ route('api.ping',['ip' => $server->ip, 'port' => $server->port]) }}").then(function mySuccess(response) {
-                    $scope.ping = response.data + "ms";
+                    if(response.data != -1)
+                    {
+                        $scope.ping = response.data + "ms";
+                    }
+                    else
+                    {
+                        $scope.ping = "超时";
+                    }
+                   
+
                 }, function myError(response) {
                     $scope.ping = "超时";
                 });
 
                 //获取玩家列表
                 $http.get("{{ route('api.player.list',['ip' => $server->ip, 'port' => $server->port]) }}").then(function mySuccess(response) {
-                    $scope.playerlist = response.data;
+                    if(response.data != -1) $scope.playerlist = response.data;
+                    else $scope.playerlist = 0;
                 }, function myError(response) {
                     $scope.playerlist = "超时";
                 });
