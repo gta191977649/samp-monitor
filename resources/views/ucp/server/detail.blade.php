@@ -8,7 +8,7 @@
         @else
             <div class="col-md-10"  id="sbmpDetail"  ng-controller="sbmpQueryController">
         @endif
-        <h1><% hostname %> - 详细信息</h1>
+        <h1><% hostname.isValid ? "{{$server->hostname}}" : hostname %> - 详细信息</h1>
         <hr/>
         <div class="col-md-12" style="margin-bottom:10px;">
             <a href="samp://{{$server->ip}}:{{$server->port}}" class="btn btn-success"><i class="fa fa-gamepad" aria-hidden="true"></i>
@@ -24,7 +24,7 @@
                               
                                 <tr>
                                     <td>服务器名:</td>
-                                    <td><% hostname %></td>
+                                    <td><% hostname.isValid ? "{{$server->hostname}}" : hostname %></td>
                                 </tr>
                                 <tr>
                                     <td>地址:</td>
@@ -37,8 +37,12 @@
                                     <td><% status %></td>
                                 </tr>
                                 <tr>
-                                    <td>Ping(基于本机房):</td>
+                                    <td>Ping (基于本机房):</td>
                                     <td><% ping %></td>
+                                </tr>
+                                <tr>
+                                    <td>Ping 平均(基于本机房):</td>
+                                    <td><% {{round($server->status->avg('ping'))}} %>ms</td>
                                 </tr>
                                 <tr>
                                     <td>玩家:</td>
@@ -46,15 +50,15 @@
                                 </tr>
                                 <tr>
                                     <td>平均玩家:</td>
-                                    <td>暂不可用</td>
+                                    <td>{{$server->status->avg('player')}}</td>
                                 </tr>
                                 <tr>
                                     <td>最大玩家记录:</td>
-                                    <td>暂不可用</td>
+                                    <td>{{$server->status->max('player')}}</td>
                                 </tr>
                                 <tr>
                                     <td>游戏模式:</td>
-                                    <td><% gamemode %></td>
+                                    <td><% gamemode.isValid ? "{{$server->gamemode}}" : gamemode %></td>
                                 </tr>
                                 <tr>
                                     <td>评价:</td>

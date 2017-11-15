@@ -27,10 +27,10 @@
     <script src="{{ asset('js/angular-route.js') }}"></script>
     @foreach($servers as $server)
 	<tr id="App{{$server->id}}"  ng-controller="customersCtrl{{$server->id}}">
-        <td><p><a href="{{route('server.detail',['id' => $server->id])}}"><img src="{{ asset('css/samp.gif') }}" alt="" border="0"> <% hostname %>  </a></p></td>
+        <td><p><a href="{{route('server.detail',['id' => $server->id])}}"><img src="{{ asset('css/samp.gif') }}" alt="" border="0"> <% hostname.isValid ? "{{$server->hostname}}" : hostname  %>  </a></p></td>
 	    <td>{{ $server->ip }}:{{ $server->port }}</td>
-	    <td><% gamemode %></td>
-	    <td><% players %></td>
+	    <td><% gamemode.isValid ? "{{$server->gamemode}}" : gamemode %></td>
+	    <td><% players.isValid ? "超时" : players  %></td>
 	    <td><% status %></td>
 	</tr>
     <script>
@@ -43,10 +43,12 @@
             $scope.gamemode ="{{$server->gamemode}}";
 
             $http.get("{{ route('api.info',['ip' => $server->ip, 'port' => $server->port]) }}").then(function mySuccess(response) {
+              
                 $scope.players = response.data.players + "/" + response.data.maxplayers;
                 $scope.gamemode = response.data.gamemode;
                 $scope.hostname = response.data.hostname;
                 $scope.status = "在线";
+                
 
             }, function myError(response) {
                 $scope.players = "获取失败";
