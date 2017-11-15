@@ -48,7 +48,7 @@
                             <label>API代码(自动生成):</label>
                             <input class="form-control" type="text" placeholder="自动生成"  value="<% getUrl %>">
                         </div>
-                        <a class="btn btn-default" ng-click="queryInfo()">获取基本状态</a>
+                        <a class="btn btn-default" ng-click="queryInfo()">测试</a>
                     
                         
                     </div>
@@ -98,7 +98,7 @@
                         <label>API代码(自动生成):</label>
                         <input class="form-control" type="text" placeholder="自动生成"  value="<% getUrl %>">
                     </div>
-                    <a class="btn btn-default" ng-click="queryInfo()">获取基本状态</a>
+                    <a class="btn btn-default" ng-click="queryInfo()">测试</a>
                 
                     
                 </div>
