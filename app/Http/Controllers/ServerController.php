@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Server;
+use App\User;
 use Auth;
 
 class ServerController extends Controller
@@ -24,6 +25,9 @@ class ServerController extends Controller
 
     public function store(Request $req)
     {
+        //判断是否数据已有
+        $isexist = Server::where('ip',$req["ip"])->where('port',$req["port"])->get();
+        if($isexist->count())  return back()->withErrors(array('message' => '你添加的服务器数据已存在,请勿重复添加服务器数据! 数据贡献者:'.$isexist->first()->user->name));
         
         $server = Auth::user()->servers()->create([
             "name" => $req["name"],
@@ -43,6 +47,8 @@ class ServerController extends Controller
         $server = Auth::user()->servers()->find($id);
         if(!$server) return $this->edit($id)->withErrors(array('message' => '数据ID不正确,无法编辑!'));
 
+        $isexist = Server::where('ip',$req["ip"])->where('port',$req["port"])->where('id','!=',$id)->get();
+        if($isexist->count())  return back()->withErrors(array('message' => '你添加的服务器数据已存在,请勿重复添加服务器数据! 数据贡献者:'.$isexist->first()->user->name));
         //->withErrors(array('message' => '游戏昵称或者密码不正确!'));
         $server->update([
             "name" => $req["name"],
