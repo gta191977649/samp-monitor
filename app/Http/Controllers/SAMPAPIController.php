@@ -15,7 +15,7 @@ class SAMPAPIController extends Controller
         return view("ucp.api.query");
     }
 
-    //API
+    
 
     public function info($ip,$port)
     {
@@ -28,6 +28,9 @@ class SAMPAPIController extends Controller
        
         return "-1";
     }
+
+ 
+
     public function player($ip,$port)
     {
         $query = new SampQuery($ip,$port);
@@ -59,6 +62,22 @@ class SAMPAPIController extends Controller
             return $query->getPing();
         }
 
+        return "-1";
+    }
+
+    //对外开放API
+    public function getInfo(Request $req)
+    {
+        return $req;
+        $ip = $req["ip"];
+        $port = $req["port"];
+        $query = new SampQuery($ip,$port);
+
+        if ($query->connect()) {
+
+            return $query->getInfo();
+        }
+       
         return "-1";
     }
     

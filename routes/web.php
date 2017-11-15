@@ -13,14 +13,15 @@
 
 Route::get('/','MainController@index')->name('index');
 Route::get('/un','MainController@gtaun')->name('gtaun');
+
 //Route::get('/cn','MainController@gtaun')->name('index');
-
-
 
 
 Auth::routes();
 
 
+//对外
+Route::get('/api/get/samp/info/{ip}{port}','SAMPAPIController@getInfo')->name('api.getInfo');
 
 //API
 Route::get('/api/samp/info/{ip}/port/{port}','SAMPAPIController@info')->name('api.info');
@@ -29,6 +30,8 @@ Route::get('/api/samp/playerlist/{ip}/port/{port}','SAMPAPIController@playerList
 Route::get('/api/samp/ping/{ip}/port/{port}','SAMPAPIController@ping')->name('api.ping');
 
 Route::get('/server/detail/{id}', 'ServerController@fontedDetail')->name('server.detail');
+
+
 
 //Route::get('/api/server/players/{ip}/port/{port}','SAMPAPIController@test')->name('test');
 
