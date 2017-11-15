@@ -13,6 +13,8 @@
         <div class="col-md-12" style="margin-bottom:10px;">
             <a href="samp://{{$server->ip}}:{{$server->port}}" class="btn btn-success"><i class="fa fa-gamepad" aria-hidden="true"></i>
         进去玩</a>
+            <a href="http://ping.chinaz.com/{{$server->ip}}" target="_blank" class="btn btn-info"><i class="fa fa-globe" aria-hidden="true"></i>
+        测试各地延迟</a>
         </div>
         
             <div class="col-md-6">
