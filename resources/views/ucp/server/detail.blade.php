@@ -50,7 +50,7 @@
                                 </tr>
                                 <tr>
                                     <td>平均玩家:</td>
-                                    <td>{{$server->status->count() ? $server->status->avg('player') : "暂无统计"}}</td>
+                                    <td>{{$server->status->count() ? round($server->status->avg('player')) : "暂无统计"}}</td>
                                 </tr>
                                 <tr>
                                     <td>最大玩家记录:</td>
