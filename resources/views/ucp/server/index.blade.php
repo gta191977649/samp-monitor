@@ -19,6 +19,7 @@
         </div>
         </div>
     @else
+    <div class="table-responsive">    
         <table id="dataTable" class="table table-bordered border-radius">
 
         <tbody>
@@ -86,8 +87,9 @@
 
     @endforeach
 
-	</tbody></table>
-
+	</tbody>
+    </table>
+    </div>
             
         </div>
     </div>

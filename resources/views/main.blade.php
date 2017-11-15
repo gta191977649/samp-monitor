@@ -12,6 +12,7 @@
         </div>
         </div>
     @else
+    <div class="table-responsive">    
         <table class="table table-bordered border-radius">
 
         <tbody>
@@ -76,6 +77,8 @@
 
     @endforeach
 
-	</tbody></table>
+	</tbody>
+    </table>
+    </div>
 @endsection
 
