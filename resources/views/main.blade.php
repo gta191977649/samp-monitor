@@ -39,6 +39,9 @@
             $interpolateProvider.startSymbol('<%');
             $interpolateProvider.endSymbol('%>');
         }).controller('customersCtrl{{$server->id}}', function($scope, $http) {
+            $scope.hostname = "{{$server->name}}"; //使用数据库里存储的服务器名称
+            $scope.gamemode ="{{$server->gamemode}}";
+
             $http.get("{{ route('api.info',['ip' => $server->ip, 'port' => $server->port]) }}").then(function mySuccess(response) {
                 $scope.players = response.data.players + "/" + response.data.maxplayers;
                 $scope.gamemode = response.data.gamemode;

@@ -17,7 +17,7 @@
         <div class="panel-heading">工具</div>
         
         <li><a href="#">签名生成</a></li>
-        <li><a href="#">API</a></li>
+        <li><a href="{{route('ucp.api.query')}}">API</a></li>
     </ul>
 </div>
 @endif

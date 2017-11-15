@@ -45,4 +45,9 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('/ucp/server/store', 'ServerController@store')->name('ucp.server.store');
     Route::post('/ucp/server/update/{id}', 'ServerController@update')->name('ucp.server.update');
     Route::get('/ucp/server/detail/{id}', 'ServerController@detail')->name('ucp.server.detail');
+    
+    //UCP API
+    Route::get('/ucp/api/query/', 'SAMPAPIController@frontendQuery')->name('ucp.api.query');
+
+
 });

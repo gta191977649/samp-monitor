@@ -8,7 +8,15 @@ use App\SAMP\SampQuery;
 
 class SAMPAPIController extends Controller
 {
-    //
+    //Frontend
+
+    public function frontendQuery()
+    {
+        return view("ucp.api.query");
+    }
+
+    //API
+
     public function info($ip,$port)
     {
         $query = new SampQuery($ip,$port);

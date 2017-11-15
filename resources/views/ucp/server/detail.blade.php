@@ -128,7 +128,8 @@
             $interpolateProvider.startSymbol('<%');
             $interpolateProvider.endSymbol('%>');
         }).controller('sbmpQueryController', function($scope, $http,$interval) {
-            
+            $scope.hostname = "{{$server->name}}"; //使用数据库里存储的服务器名称
+            $scope.gamemode ="{{$server->gamemode}}";
             
             $scope.getData = function(){ 
                 $http.get("{{ route('api.info',['ip' => $server->ip, 'port' => $server->port]) }}").then(function mySuccess(response) {
