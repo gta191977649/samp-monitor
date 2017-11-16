@@ -98,7 +98,7 @@
             <!-- 统计图 玩家数 -->
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">统计 - 玩家 <span class="label label-success">{{$server->status()->select('created_at')->orderBy('created_at', 'desc')->first()->created_at}}</span></div>
+                    <div class="panel-heading">统计 - 玩家 <span class="label label-success">{{$server->status()->select('created_at')->orderBy('created_at', 'desc')->first()->created_at->format('y-m-d')}}</span></div>
                     @if($server->status->count())
                         <canvas id="sbmpPlayers" width="100%" height="20"></canvas>
                     @else
@@ -110,7 +110,7 @@
             <!-- 统计图 Ping -->
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">统计 - Ping <span class="label label-success">{{$server->status()->select('created_at')->orderBy('created_at', 'desc')->first()->created_at}}</span></div>
+                    <div class="panel-heading">统计 - Ping <span class="label label-success">{{$server->status()->select('created_at')->orderBy('created_at', 'desc')->first()->created_at->format('y-m-d')}}</span></div>
                     @if($server->status->count())
                         <canvas id="sbmpPing" width="100%" height="20"></canvas>
                     @else
