@@ -193,7 +193,8 @@ class SampQuery {
      * )
      */
     public function getRules() {
-		// <editor-fold defaultstate="collapsed" desc="Get Rules">
+        // <editor-fold defaultstate="collapsed" desc="Get Rules">
+        //iconv("GBK","UTF-8//IGNORE",(string) fread($this->sock, $strLen) );
         @fwrite($this->sock, $this->assemblePacket("r"));
         fread($this->sock, 11);
 
@@ -202,10 +203,10 @@ class SampQuery {
 
         for($i = 0; $i< $ruleCount; ++$i) {
             $strLen = ord(fread($this->sock, 1));
-            $rule = (string) fread($this->sock, $strLen);
+            $rule = iconv("GBK","UTF-8//IGNORE",(string) fread($this->sock, $strLen) );
 
             $strLen = ord(fread($this->sock, 1));
-            $rules[$rule] = (string) fread($this->sock, $strLen);
+            $rules[$rule] = iconv("GBK","UTF-8//IGNORE",(string) fread($this->sock, $strLen) );
         }
         return $rules;
 		// </editor-fold>

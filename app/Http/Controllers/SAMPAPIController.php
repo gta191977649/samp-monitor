@@ -65,6 +65,15 @@ class SAMPAPIController extends Controller
         return "-1";
     }
 
+    public function rules($ip,$port)
+    {
+        $query = new SampQuery($ip,$port);
+        if ($query->connect()) {
+            return $query->getRules();
+        }
+
+        return "-1";
+    }
     //对外开放API
     public function getInfo(Request $req)
     {

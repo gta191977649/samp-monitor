@@ -35,6 +35,18 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td>网站:</td>
+                                    <td ng-bind-html = "weburl"></td>
+                                </tr>
+                                <tr>
+                                    <td>地图版本:</td>
+                                    <td><% mapversion %></td>
+                                </tr>
+                                <tr>
+                                    <td>SAMP版本:</td>
+                                    <td><% version %></td>
+                                </tr>
+                                <tr>
                                     <td>状态:</td>
                                     <td><% status %></td>
                                 </tr>
@@ -141,7 +153,7 @@
             //解决该死的blade引擎和angularjs的syntax冲突
             $interpolateProvider.startSymbol('<%');
             $interpolateProvider.endSymbol('%>');
-        }).controller('sbmpQueryController', function($scope, $http,$interval) {
+        }).controller('sbmpQueryController', function($scope, $http,$interval,$sce) {
             $scope.hostname = "{{$server->name}}"; //使用数据库里存储的服务器名称
             $scope.gamemode ="{{$server->gamemode}}";
             
@@ -193,6 +205,30 @@
                     else $scope.playerlist = 0;
                 }, function myError(response) {
                     $scope.playerlist = "超时";
+                });
+
+                //获取Rules
+                $http.get("{{ route('api.rules',['ip' => $server->ip, 'port' => $server->port]) }}").then(function mySuccess(response) {
+                    if(response.data != "-1")
+                    {
+                        $scope.version = response.data.version;
+                        $scope.mapversion = response.data.mapname;
+                        $scope.weburl = $sce.trustAsHtml("<a href='http://" + response.data.weburl + "' target='_blank'>" +response.data.weburl + "</a>");  
+                             
+                    }
+                    else
+                    {
+                        $scope.version = "超时";
+                        $scope.mapversion = "超时";
+                        $scope.weburl = $sce.trustAsHtml("超时");                  
+                    }
+
+                }, function myError(response) {
+                    $scope.version = "超时";
+                    $scope.mapversion = "超时";
+                    $scope.weburl = "超时";
+                    
+                    
                 });
 
             };
