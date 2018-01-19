@@ -152,7 +152,7 @@ strong
 }
 
 
-#footer
+.footer
 {
 	font-size: 62.5%;
 	border-top: 1px solid #bbb;
@@ -194,7 +194,6 @@ strong
 	min-width: 700px;
 	padding-top:50px;
 	padding-bottom:50px;
-	height: 100vh;
 }
 
 #pagebody table
@@ -244,3 +243,17 @@ strong
 #pagebody table p {margin:0 0 2px 0;}
 
 #pagebody table .table_value {color:#0F93D2;}
+
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	height: 60px;
+	background-color: #f5f5f5;
+}
