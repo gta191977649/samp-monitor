@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html xmlns="”http://www.w3.org/1999/xhtml”">
 <head>
+	<!-- CSRF Token -->
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="Content-Language" content="zh-cn">
 	<meta name="keywords" content="Easy-MP">
@@ -15,6 +17,7 @@
 <div id="header">
 	<div class="wrapper">
 		<h1>SAMP服务器列表</h1>
+		
 		<ul>
 			<li><a href="index.php" title="主页">主页</a></li>
 			<li class="current"><a href="{{ route('index') }}" title="所有运营中的服务器的列表">服务器</a>
@@ -26,7 +29,7 @@
 </div>
 
 <div id="pagebody">
-<div class="wrapper">
+<div class="wrapper" id="app">
     @yield("main")
 </div>
 </div>
@@ -37,9 +40,6 @@
   	</div>
 </div>
     {{-- JS --}}
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-   
-
-
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

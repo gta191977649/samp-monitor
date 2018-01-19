@@ -11,9 +11,8 @@
     <title>Project Sparrow SAMP服務器列表</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <!-- FontAwsome -->
-    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Custom -->
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
 </head>
@@ -90,8 +89,7 @@
     </footer>
     
     <!-- Scripts -->
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
     @yield('js')
 </body>

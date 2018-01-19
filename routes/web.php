@@ -29,6 +29,7 @@ Route::get('/api/samp/player/{ip}/port/{port}','SAMPAPIController@player')->name
 Route::get('/api/samp/playerlist/{ip}/port/{port}','SAMPAPIController@playerList')->name('api.player.list');
 Route::get('/api/samp/ping/{ip}/port/{port}','SAMPAPIController@ping')->name('api.ping');
 Route::get('/api/samp/rules/{ip}/port/{port}','SAMPAPIController@rules')->name('api.rules');
+Route::get('/api/samp/index','ServerController@indexApi')->name('api.index');
 
 Route::get('/server/detail/{id}', 'ServerController@fontedDetail')->name('server.detail');
 

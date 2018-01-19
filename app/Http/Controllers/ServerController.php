@@ -16,6 +16,12 @@ class ServerController extends Controller
         
         return view("ucp.server.index",compact('servers'));
     }
+    public function indexApi()
+    {
+        $servers = Auth::user()->servers()->get();
+        
+        return $servers;
+    }
     
     public function add()
     {

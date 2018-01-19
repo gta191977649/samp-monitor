@@ -2,8 +2,8 @@
 
 @section('main')
     <h1>服務器一覽</h1>
-
-	
+    <serverlist></serverlist>
+	{{--
     @if(!$servers->count())
         <div class="panel panel-default">
         <div class="panel-heading">提示</div>
@@ -78,7 +78,7 @@
     @endforeach
 
 	</tbody></table>
-   
+    --}}
    
     
     
