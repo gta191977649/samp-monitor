@@ -22,8 +22,6 @@
             <th>状态</th>
         </tr>
     @endif
-
-
     <script src="{{ asset('js/angular.min.js') }}"></script>
     <script src="{{ asset('js/angular-route.js') }}"></script>
 
@@ -79,9 +77,4 @@
 
 	</tbody></table>
     --}}
-   
-    
-    
-  
-  
 @endsection

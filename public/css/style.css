@@ -156,20 +156,19 @@ strong
 {
 	font-size: 62.5%;
 	border-top: 1px solid #bbb;
-        height: 60px;
-	min-width: 700px;
-	background: #dcdcdc url("header-bg.png") top left repeat-x;
 
+	background: #dcdcdc url("header-bg.png") top left repeat-x;
+	text-align: right;
 	color: #666;
 	padding: 12px 0;
 }
-
+/*
 #footer div
 {
 	margin-top: -3px;
 	text-align: right;
 }
-
+*/
 #headline
 {
 	height: 87px;
