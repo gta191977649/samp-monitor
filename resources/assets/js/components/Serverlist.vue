@@ -1,6 +1,10 @@
 <template>
     <div>
-        {{servers}}
+        <!--{{servers}}
+        Info:
+        {{dymicInfo}}-->
+        
+        <h1 v-show="servers.length == 0" class="text-center">Loading..</h1>
          <table class="table">
             <tr>
                 <th>服务器</th>
@@ -9,13 +13,13 @@
                 <th>玩家</th>
                 <th>状态</th>
             </tr>
-            <tr v-for="server in servers">
+            <tr v-for="(server,i) in servers">
                 
-                <td>{{server.name}}</td>
+                <td>{{ dymicInfo[i].hostname ? dymicInfo[i].hostname : server.name }}</td>
                 <td>{{server.ip}}:{{server.port}}</td>
-                <td>{{server.gamemode}}</td>
-                <td>{{ getServerInfo(server.ip,server.port) }}</td>
-                <td>aaa</td>
+                <td>{{dymicInfo[i].gamemode ?  dymicInfo[i].gamemode : server.gamemode}}</td>
+                <td>{{dymicInfo[i].maxplayers ? dymicInfo[i].players +"/"+dymicInfo[i].maxplayers : "不在线"}}</td>
+                <td>{{dymicInfo[i].hostname ? "在线" : "不在线"}}</td>
                 
             </tr>
           
@@ -32,7 +36,9 @@
             axios.get(`/api/samp/index/`)
             .then(response => {
                 this.servers = response.data
-
+                this.servers.forEach((server) => {
+                    this.getServerInfo(server.ip,server.port)
+                });
             })
             .catch(e => {
                 alert(e)
@@ -41,7 +47,7 @@
         data: function () {
             return {
                 servers: [],
-                infos: []
+                dymicInfo: []
             
             }
         },
@@ -49,11 +55,16 @@
             getServerInfo: function($ip,$port){
                 axios.get(`/api/samp/info/`+$ip+`/port/`+$port)
                 .then(response => {
-                    return response.data.players
+                    this.dymicInfo.push({
+                        hostname: response.data.hostname,
+                        players: response.data.players,
+                        maxplayers: response.data.maxplayers,
+                        gamemode: response.data.gamemode,
+                })
                     
                 })
                 .catch(e => {
-                    alert(e)
+                    
                 })
             }
 
