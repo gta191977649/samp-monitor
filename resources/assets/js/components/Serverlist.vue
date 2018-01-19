@@ -15,11 +15,11 @@
             </tr>
             <tr v-for="(server,i) in servers">
                 
-                <td><a v-bind:href="'/server/detail/'+(i+1)"><img src="css/samp.gif"> {{ dymicInfo[i].hostname ? dymicInfo[i].hostname : server.name }}</img></a></td>
+                <td><a v-bind:href="'/server/detail/'+(i+1)"><img src="css/samp.gif"> {{ dymicInfo[i].length ? dymicInfo[i].hostname : server.name }}</img></a></td>
                 <td>{{server.ip}}:{{server.port}}</td>
-                <td>{{dymicInfo[i].gamemode ?  dymicInfo[i].gamemode : server.gamemode}}</td>
-                <td>{{dymicInfo[i].maxplayers ? dymicInfo[i].players +"/"+dymicInfo[i].maxplayers : "不在线"}}</td>
-                <td>{{dymicInfo[i].hostname ? "在线" : "不在线"}}</td>
+                <td>{{dymicInfo[i].length ?  dymicInfo[i].gamemode : server.gamemode}}</td>
+                <td>{{dymicInfo[i].length ? dymicInfo[i].players +"/"+dymicInfo[i].maxplayers : "不在线"}}</td>
+                <td>{{dymicInfo[i].length ? "在线" : "不在线"}}</td>
                 
             </tr>
           

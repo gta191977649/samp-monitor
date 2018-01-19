@@ -29,7 +29,7 @@
 </div>
 
 <div id="pagebody">
-<div class="wrapper" id="app">
+<div class="wrapper">
     @yield("main")
 </div>
 </div>
