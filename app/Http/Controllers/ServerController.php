@@ -18,7 +18,7 @@ class ServerController extends Controller
     }
     public function indexApi()
     {
-        $servers = servers::get();
+        $servers = server::get();
         return $servers;
     }
     
