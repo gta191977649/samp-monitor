@@ -28,7 +28,7 @@
             </div>
             <div class="form-group">
                 <label>名称(当离线时使用):</label>
-                <input name= "name" type="text" class="form-control" id="text" placeholder="名称" required>
+                <input name= "hostname" type="text" class="form-control" id="text" placeholder="名称" required>
             </div>
             <div class="form-group">
                 <label>模式(分类使用):</label>

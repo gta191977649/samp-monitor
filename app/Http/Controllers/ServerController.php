@@ -36,7 +36,7 @@ class ServerController extends Controller
         if($isexist->count())  return back()->withErrors(array('message' => '你添加的服务器数据已存在,请勿重复添加服务器数据! 数据贡献者:'.$isexist->first()->user->name));
         
         $server = Auth::user()->servers()->create([
-            "name" => $req["name"],
+            "hostname" => $req["hostname"],
             "ip" => $req["ip"],
             "port" => $req["port"],
             "gamemode" => $req["gamemode"],
@@ -57,7 +57,7 @@ class ServerController extends Controller
         if($isexist->count())  return back()->withErrors(array('message' => '你添加的服务器数据已存在,请勿重复添加服务器数据! 数据贡献者:'.$isexist->first()->user->name));
         //->withErrors(array('message' => '游戏昵称或者密码不正确!'));
         $server->update([
-            "name" => $req["name"],
+            "hostname" => $req["hostname"],
             "ip" => $req["ip"],
             "port" => $req["port"],
             "gamemode" => $req["gamemode"],

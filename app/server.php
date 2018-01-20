@@ -8,7 +8,7 @@ class Server extends Model
 {
     //
     protected $fillable = [
-        'id','name', 'ip', 'port','gamemode','description','user_id','hide'
+        'id','hostname', 'ip', 'port','gamemode','description','user_id','hide'
     ];
 
     public function user()

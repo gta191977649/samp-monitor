@@ -118,6 +118,9 @@
                     @endif
                 </div>
             </div>
+            <div id="app">
+                <server-chart></server-chart>
+            </div>
             
             <!-- 统计图 Ping -->
             <div class="col-md-12">
@@ -145,9 +148,7 @@
 
 @section('js')
     <!-- JS -->
-    <script src="{{ asset('js/Chart.min.js') }}"></script>
-    <script src="{{ asset('js/angular.min.js') }}"></script>
-    <script src="{{ asset('js/angular-route.js') }}"></script>
+
     <script>    
         angular.module('statusQuery', [], function($interpolateProvider) {
             //解决该死的blade引擎和angularjs的syntax冲突
@@ -245,6 +246,8 @@
         angular.bootstrap(document.getElementById("sbmpDetail"), ['statusQuery']);
         
     </script>
+
+
     <!--图表的JS -->
     <!--图表 玩家 -->
     <!-- SELECT * FROM `status` WHERE DATE(`created_at`)=CURDATE() -->

@@ -2,8 +2,12 @@
 
 @section('main')
     <h1>服務器一覽</h1>
-    {{--<serverlist></serverlist>--}}
-	
+    
+    <div id="app">
+        <serverlist></serverlist>
+    </div>
+    
+    {{--
     @if(!$servers->count())
         <div class="panel panel-default">
         <div class="panel-heading">提示</div>
@@ -22,8 +26,7 @@
             <th>状态</th>
         </tr>
     @endif
-    <script src="{{ asset('js/angular.min.js') }}"></script>
-    <script src="{{ asset('js/angular-route.js') }}"></script>
+    
 
     @foreach($servers as $server)
 	<tr id="App{{$server->id}}"  ng-controller="customersCtrl{{$server->id}}">
@@ -76,5 +79,5 @@
     @endforeach
 
 	</tbody></table>
-   
+    --}}
 @endsection

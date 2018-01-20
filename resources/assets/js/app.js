@@ -7,6 +7,7 @@
 
 require('./bootstrap');
 
+
 window.Vue = require('vue');
 
 /**
@@ -16,7 +17,9 @@ window.Vue = require('vue');
  */
 
 //Vue.component('example', require('./components/Example.vue'));
+
 Vue.component('serverlist', require('./components/Serverlist.vue'));
+//Vue.component('server-chart',{extends: VueCharts }, require('./components/serverChart.vue'));
 
 const app = new Vue({
     el: '#app'
