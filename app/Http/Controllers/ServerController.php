@@ -18,8 +18,7 @@ class ServerController extends Controller
     }
     public function indexApi()
     {
-        $servers = Auth::user()->servers()->get();
-        
+        $servers = servers::get();
         return $servers;
     }
     
