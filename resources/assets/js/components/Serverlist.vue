@@ -21,8 +21,8 @@
                 <td><a v-bind:href="'/server/detail/'+(i+1)"><img src="/css/samp.gif"> {{ server.hostname }}</img></a></td>
                 <td>{{server.ip}}:{{server.port}}</td>
                 <td>{{server.gamemode}}</td>
-                <td>{{server.players}} / {{server.maxplayers}}</td>
-                <td>{{server ? "在线" : "不在线"}}</td>
+                <td>{{server.maxplayers ? server.players + '/' + server.maxplayers : '-' }}</td>
+                <td>{{server.maxplayers ? "在线" : "超时"}}</td>
                 
             </tr>
           

@@ -18,7 +18,7 @@ class ServerController extends Controller
     }
     public function indexApi()
     {
-        $servers = server::get();
+        $servers = server::where('hide',0)->get();
         return $servers;
     }
     

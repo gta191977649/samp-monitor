@@ -107549,10 +107549,16 @@ var render = function() {
             _c("td", [_vm._v(_vm._s(server.gamemode))]),
             _vm._v(" "),
             _c("td", [
-              _vm._v(_vm._s(server.players) + " / " + _vm._s(server.maxplayers))
+              _vm._v(
+                _vm._s(
+                  server.maxplayers
+                    ? server.players + "/" + server.maxplayers
+                    : "-"
+                )
+              )
             ]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(server ? "在线" : "不在线"))])
+            _c("td", [_vm._v(_vm._s(server.maxplayers ? "在线" : "超时"))])
           ])
         })
       ],
