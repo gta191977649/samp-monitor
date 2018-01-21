@@ -16,7 +16,7 @@
                 <th>玩家</th>
                 <th>状态</th>
             </tr>
-            <tr v-for="server in servers">
+            <tr v-for="(server,i) in servers">
                 
                 <td><a v-bind:href="'/server/detail/'+(i+1)"><img src="/css/samp.gif"> {{ server.hostname }}</img></a></td>
                 <td>{{server.ip}}:{{server.port}}</td>
