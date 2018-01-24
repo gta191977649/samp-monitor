@@ -30,11 +30,11 @@ Route::get('/api/samp/playerlist/{ip}/port/{port}','SAMPAPIController@playerList
 Route::get('/api/samp/ping/{ip}/port/{port}','SAMPAPIController@ping')->name('api.ping');
 Route::get('/api/samp/rules/{ip}/port/{port}','SAMPAPIController@rules')->name('api.rules');
 Route::get('/api/samp/index','ServerController@indexApi')->name('api.index');
-
-Route::get('/api/server/detail/{id}', 'ServerController@fontedDetail')->name('server.detail');
 Route::get('/api/server/playerrecord/{id}/{date}', 'ServerController@playerRecord')->name('server.playerRecord');
 Route::get('/api/server/playerrecdate/{id}/', 'ServerController@playerRecordDateRange')->name('server.playerRecordDateRange');
 
+
+Route::get('/server/detail/{id}', 'ServerController@fontedDetail')->name('server.detail');
 
 
 //Route::get('/api/server/players/{ip}/port/{port}','SAMPAPIController@test')->name('test');

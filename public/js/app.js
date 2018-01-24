@@ -124138,7 +124138,7 @@ Vue.component('player-chart', __webpack_require__(340));
         var _this = this;
 
         //获取Date
-        axios.get('api/server/playerrecdate/' + this.id).then(function (response) {
+        axios.get('/api/server/playerrecdate/' + this.id).then(function (response) {
             //alert(`http://127.0.0.1:8000/server/playerrecdate/1`)
             var _iteratorNormalCompletion = true;
             var _didIteratorError = false;
@@ -124189,7 +124189,7 @@ Vue.component('player-chart', __webpack_require__(340));
             var _this2 = this;
 
             //alert($date)
-            axios.get('api/server/playerrecord/' + $serverId + '/' + $date).then(function (response) {
+            axios.get('/api/server/playerrecord/' + $serverId + '/' + $date).then(function (response) {
                 _this2.labels = [];
                 _this2.players = [];
                 var records = response.data;
