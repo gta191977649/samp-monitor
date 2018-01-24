@@ -31,9 +31,9 @@ Route::get('/api/samp/ping/{ip}/port/{port}','SAMPAPIController@ping')->name('ap
 Route::get('/api/samp/rules/{ip}/port/{port}','SAMPAPIController@rules')->name('api.rules');
 Route::get('/api/samp/index','ServerController@indexApi')->name('api.index');
 
-Route::get('/server/detail/{id}', 'ServerController@fontedDetail')->name('server.detail');
-Route::get('/server/playerrecord/{id}/{date}', 'ServerController@playerRecord')->name('server.playerRecord');
-Route::get('/server/playerrecdate/{id}/', 'ServerController@playerRecordDateRange')->name('server.playerRecordDateRange');
+Route::get('/api/server/detail/{id}', 'ServerController@fontedDetail')->name('server.detail');
+Route::get('/api/server/playerrecord/{id}/{date}', 'ServerController@playerRecord')->name('server.playerRecord');
+Route::get('/api/server/playerrecdate/{id}/', 'ServerController@playerRecordDateRange')->name('server.playerRecordDateRange');
 
 
 
