@@ -51,7 +51,7 @@ class SampStatusUpdate extends Command
     
 
                 $server->status()->create([
-                    "player" => $info["players"],
+                    "player" => $info["players"] ? $info["players"] : 0 ,
                     "ping" => $ping,
                     "timeout" => false,
                 ]); 

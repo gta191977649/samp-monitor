@@ -26,6 +26,7 @@
     "chartjs": "^0.3.24",
     "eslint": "^4.15.0",
     "font-awesome": "^4.7.0",
+    "moment": "^2.20.1",
     "vue-chartjs": "^3.1.0"
   }
 }

@@ -108,19 +108,24 @@
 
             @if($server->status->count())
             <!-- 统计图 玩家数 -->
+          
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">统计 - 玩家 <span class="label label-success">{{$server->status()->select('created_at')->orderBy('created_at', 'desc')->first()->created_at->format('Y-m-d')}}</span></div>
+                    
+                    <div class="panel-body">
+                            <div id="app">
+                                    <player-record :id="{{$server->id}}"></player-record>
+                                </div>
                     @if($server->status->count())
                         <canvas id="sbmpPlayers" width="100%" height="20"></canvas>
                     @else
                         <h3 class="text-center" ng-if="!playerlist.length">暂无数据</h3>
                     @endif
+                    </div>
                 </div>
             </div>
-            <div id="app">
-                <server-chart></server-chart>
-            </div>
+          
             
             <!-- 统计图 Ping -->
             <div class="col-md-12">
@@ -251,6 +256,7 @@
     <!--图表的JS -->
     <!--图表 玩家 -->
     <!-- SELECT * FROM `status` WHERE DATE(`created_at`)=CURDATE() -->
+    {{--
     <script>
         var ctx = document.getElementById("sbmpPlayers").getContext('2d');
         var myChart = new Chart(ctx, {
@@ -288,6 +294,7 @@
             }
         });
     </script>
+    --}}
     <!--图表 Ping -->
     <script>
         var ctx = document.getElementById("sbmpPing").getContext('2d');

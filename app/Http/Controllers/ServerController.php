@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Server;
 use App\User;
+use App\SeverStatus;
 use Auth;
+use DB;
 
 class ServerController extends Controller
 {
@@ -95,5 +97,33 @@ class ServerController extends Controller
         $server =Server::find($id);
         
         return view("ucp.server.detail",compact("server"));
+    }
+
+    public function playerRecordDateRange($id)
+    {
+        $server = DB::table("status")
+            ->select(DB::raw("DATE_FORMAT(`created_at`,'%Y-%m-%d') as `date`"))
+            ->where("server_id",$id)
+            ->orderBy('created_at')
+            ->groupBy(DB::raw("DATE(created_at)"))
+            ->get();
+       
+        return $server;
+    }
+    public function playerRecord($id,$date)
+    {
+        if($date == "NAN")
+        {
+            $server = Server::find($id);
+            return $server->status()->whereDate('created_at', DB::raw('CURDATE()'))->get();
+        }
+
+        $server = DB::table("status")
+        ->select("*" )
+        ->where("server_id",$id)
+        ->whereRaw(DB::raw("created_at BETWEEN '$date "."00:00:00' AND '".$date." 23:59:59'"))
+        ->get();
+       
+        return $server;
     }
 }

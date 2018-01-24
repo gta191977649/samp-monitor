@@ -32,6 +32,8 @@ Route::get('/api/samp/rules/{ip}/port/{port}','SAMPAPIController@rules')->name('
 Route::get('/api/samp/index','ServerController@indexApi')->name('api.index');
 
 Route::get('/server/detail/{id}', 'ServerController@fontedDetail')->name('server.detail');
+Route::get('/server/playerrecord/{id}/{date}', 'ServerController@playerRecord')->name('server.playerRecord');
+Route::get('/server/playerrecdate/{id}/', 'ServerController@playerRecordDateRange')->name('server.playerRecordDateRange');
 
 
 
@@ -41,7 +43,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/home', 'MainController@index')->name('home');
     Route::get('/update', 'MainController@update')->name('home');
     Route::get('/ucp', 'UCPController@index')->name('ucp.index');
-    //UCP SERVER
+//UCP SERVER
     Route::get('/ucp/server/', 'ServerController@index')->name('ucp.server.index');
 
     Route::get('/ucp/server/add', 'ServerController@add')->name('ucp.server.add');

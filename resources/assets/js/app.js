@@ -19,7 +19,9 @@ window.Vue = require('vue');
 //Vue.component('example', require('./components/Example.vue'));
 
 Vue.component('serverlist', require('./components/Serverlist.vue'));
-//Vue.component('server-chart',{extends: VueCharts }, require('./components/serverChart.vue'));
+Vue.component('player-record', require('./components/PlayerRecord.vue'));
+//Vue.component('player-chart', require('./components/PlayerChart.vue'));
+
 
 const app = new Vue({
     el: '#app'
