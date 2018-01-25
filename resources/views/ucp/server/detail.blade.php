@@ -114,11 +114,11 @@
                     <div class="panel-heading">统计 - 玩家 <span class="label label-success">{{$server->status()->select('created_at')->orderBy('created_at', 'desc')->first()->created_at->format('Y-m-d')}}</span></div>
                     
                     <div class="panel-body">
-                            <div id="app">
-                                    <player-record :id="{{$server->id}}"></player-record>
-                                </div>
+                            
                     @if($server->status->count())
-                        <canvas id="sbmpPlayers" width="100%" height="20"></canvas>
+                        <div id="app">
+                                <player-record :id="{{$server->id}}"></player-record>
+                        </div>
                     @else
                         <h3 class="text-center" ng-if="!playerlist.length">暂无数据</h3>
                     @endif
