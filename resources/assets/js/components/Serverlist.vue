@@ -35,6 +35,7 @@
         mounted() {
             
             console.log('Server List mounted.')
+            console.log('这次破例支援了ie9和chrome41等旧版浏览器.')
         },
         created() {
             //alert(this.divClass)
