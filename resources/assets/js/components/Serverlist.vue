@@ -8,7 +8,7 @@
         {{dymicInfo}}-->
         
         <h1 v-show="servers.length == 0" class="text-center">Loading..</h1>
-         <table class="table">
+         <table :class="this.divClass">
             <tr>
                 <th>服务器</th>
                 <th>地址</th>
@@ -18,7 +18,7 @@
             </tr>
             <tr v-for="(server,i) in servers">
                 
-                <td><a v-bind:href="'/server/detail/'+(i+1)"><img src="/css/samp.gif"> {{ server.hostname }}</img></a></td>
+                <td><a v-bind:href="'/server/detail/'+server.id"><img src="/css/samp.gif"> {{ server.hostname }}</img></a></td>
                 <td>{{server.ip}}:{{server.port}}</td>
                 <td>{{server.gamemode}}</td>
                 <td>{{server.maxplayers ? server.players + '/' + server.maxplayers : '-' }}</td>
@@ -33,9 +33,11 @@
 <script>
     export default {
         mounted() {
+            
             console.log('Server List mounted.')
         },
         created() {
+            //alert(this.divClass)
             axios.get(`/api/samp/index/`)
             .then(response => {
                 this.servers = response.data
@@ -50,6 +52,7 @@
                 alert(e)
             })
         },
+        props: ['divClass'],
         data: function () {
             return {
                 servers: []

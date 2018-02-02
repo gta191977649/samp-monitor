@@ -12,15 +12,15 @@
         </div>
         </div>
     @else
-    {{--
+    
         <div id="app">
             <div class="table-responsive"> 
-                <serverlist></serverlist>
+                <serverlist div-class="table"></serverlist>
             </div>
         </div>
-
+        
     @endif
-    --}}
+    {{--
     
     <div class="table-responsive">    
         <table class="table table-bordered border-radius">
@@ -91,6 +91,6 @@
     </table>
 
     </div>
-   
+   --}}
 @endsection
 

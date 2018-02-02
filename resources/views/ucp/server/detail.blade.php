@@ -117,7 +117,7 @@
                             
                     @if($server->status->count())
                         <div id="app">
-                                <player-record :id="{{$server->id}}"></player-record>
+                            <player-record :id="{{$server->id}}"></player-record>
                         </div>
                     @else
                         <h3 class="text-center" ng-if="!playerlist.length">暂无数据</h3>
