@@ -8,24 +8,30 @@
         {{dymicInfo}}-->
         
         <h1 v-show="servers.length == 0" class="text-center">Loading..</h1>
-         <table :class="this.divClass">
-            <tr>
-                <th>服务器</th>
-                <th>地址</th>
-                <th>模式</th>
-                <th>玩家</th>
-                <th>状态</th>
-            </tr>
-            <tr v-for="(server,i) in servers">
-                
-                <td><a v-bind:href="'/server/detail/'+server.id"><img src="/css/samp.gif"> {{ server.hostname }}</img></a></td>
-                <td>{{server.ip}}:{{server.port}}</td>
-                <td>{{server.gamemode}}</td>
-                <td>{{server.maxplayers ? server.players + '/' + server.maxplayers : '-' }}</td>
-                <td>{{server.maxplayers ? "在线" : "超时"}}</td>
-                
-            </tr>
-          
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>服务器</th>
+                    <th>地址</th>
+                    <th>模式</th>
+                    <th>玩家</th>
+                    <th>状态</th>
+                </tr>
+            </thead>
+            <tbody>
+            
+                <tr v-for="(server,i) in servers">
+                    
+                    <td><a v-bind:href="'/server/detail/'+server.id"><img src="/css/samp.gif"> {{ server.hostname }}</img></a></td>
+                    <td>{{server.ip}}:{{server.port}}</td>
+                    <td>{{server.gamemode}}</td>
+                    <td>{{server.maxplayers ? server.players + '/' + server.maxplayers : '-' }}</td>
+                    <td v-if="server.maxplayers"><i class="fa fa-check"></i></td>
+                    <td v-else><i class="fa fa-times"></i></td>
+
+                    
+                </tr>
+            </tbody>
         </table>
     </div>
 </template>

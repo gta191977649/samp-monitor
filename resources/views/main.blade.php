@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>服務器一覽</h1>
+    <h1>收入服务器一览</h1>
 
 	
     @if(!$servers->count())
