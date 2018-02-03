@@ -82,6 +82,10 @@ class SampQuery {
         if(!$strLen) return -1;
 
         $serverInfo['hostname'] = (string) fread($this->sock, $strLen);
+        //处理该死的空格名称服务器
+        if(!strlen($this->trimEx($serverInfo['hostname']))) $serverInfo['hostname'] = "ERROR:Invailed hostname!";
+       
+        //$serverInfo['hostname'] = strlen($this->trimEx($serverInfo['hostname']));
 
         $serverInfo['gamemode'] = "";
         $strLen = ord(fread($this->sock, 4));
@@ -117,6 +121,12 @@ class SampQuery {
      * )
      * @see getDetailedPlayers()
      */
+    public function trimEx($str)
+    {
+        $search = array(" ","　","\n","\r","\t",chr(194),chr(160),chr(161));
+        $replace = "";
+        return str_replace($search, $replace, $str);
+    }
     public function getBasicPlayers() {
 		// <editor-fold defaultstate="collapsed" desc="Get Basic Players">
         @fwrite($this->sock, $this->assemblePacket("c"));
