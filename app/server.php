@@ -21,6 +21,10 @@ class Server extends Model
         return $this->hasMany("App\SeverStatus");
     }
 
+    public function player() {
+        $data = $this->hasMany("App\SeverStatus")->orderBy('created_at', 'desc')->first();
+        return $data["player"];
+    }
     //只返回这周的东西
     public function thisWeek()
     {

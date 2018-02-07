@@ -16,7 +16,49 @@
             <a href="http://ping.chinaz.com/{{$server->ip}}" target="_blank" class="btn btn-info"><i class="fa fa-globe" aria-hidden="true"></i>
         测试各地延迟</a>
         </div>
-        
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">信息提供者</div>
+                <div class="panel-body">    
+                    <div class="media">
+                        <div class="media-left media-top">
+                            <a href="#">
+                                <img class="media-object" src="{{$server->user->avator()}}" alt="...">
+                            </a>
+                        </div>
+
+                        <div class="media-body">
+                            <h3 class="media-heading">{{$server->user->name}}</h3>
+                            <p>
+                            UID: {{$server->user->id}}
+                            <br/>
+                            <i class="fa fa-envelope-o"></i> <a href="mailto:{{$server->user->email}}">{{$server->user->email}}</a> 
+                            </p>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        服务器介绍
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        @if($server->description)
+                            {!! $server->description !!}
+                        @else
+                            <p class="text-center text-muted">
+                                <i class="fa fa-info-circle"></i>
+                                没有找到相关介绍
+                            </p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">基本信息</div>
@@ -30,8 +72,8 @@
                                 </tr>
                                 <tr>
                                     <td>地址:</td>
-                                    <td>{{$server->ip}}:{{$server->port}}
-                                    <img src="https://ipfind.co/flag?ip={{$server->ip}}&auth=05a106a4-0d26-4a2f-8f1e-b606f7affa2d" width="25" height="25">
+                                    <td>{{gethostbyname($server->ip)}}:{{$server->port}}
+                                    <img src="https://ipfind.co/flag?ip={{gethostbyname($server->ip)}}&auth=05a106a4-0d26-4a2f-8f1e-b606f7affa2d" width="25" height="25">
                                     </td>
                                 </tr>
                                 <tr>
@@ -51,7 +93,7 @@
                                     <td><% status %></td>
                                 </tr>
                                 <tr>
-                                    <td>实时Ping: <i class="fa fa-question-circle-o text-primary" data-toggle="tooltip" data-placement="top" title="实时获得到的延迟 (基于本机房)"></i></td>
+                                    <td>实时 Ping: <i class="fa fa-question-circle-o text-primary" data-toggle="tooltip" data-placement="top" title="实时获得到的延迟 (基于本机房)"></i></td>
                                     <td><% ping %></td>
                                 </tr>
                                 <tr>
@@ -264,85 +306,6 @@
     </script>
 
 
-    <!--图表的JS -->
-    <!--图表 玩家 -->
-    <!-- SELECT * FROM `status` WHERE DATE(`created_at`)=CURDATE() -->
-    {{--
-    <script>
-        var ctx = document.getElementById("sbmpPlayers").getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: [
-                    @foreach ($server->status()->whereDate('created_at', DB::raw('CURDATE()'))->get() as $s)
-                        "{{$s->created_at->format('g:i A')}}",
-                    @endforeach
-                ],
-                datasets: [{
-                    label: '玩家数',
-                    data: [
-                        @foreach ($server->status()->whereDate('created_at', DB::raw('CURDATE()'))->get() as $s)
-                        {{$s->player}},
-                        @endforeach
-                    ],
-                    backgroundColor: [
-                        'rgba(41, 128, 185,0)',
-                    ],
-                    borderColor: [
-                        'rgba(41, 128, 185,255)',
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero:true
-                        }
-                    }]
-                }
-            }
-        });
-    </script>
-    --}}
-    <!--图表 Ping -->
-    <script>
-        var ctx = document.getElementById("sbmpPing").getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: [
-                    @foreach ($server->status()->whereDate('created_at', DB::raw('CURDATE()'))->get() as $s)
-                        "{{$s->created_at->format('g:i A')}}",
-                    @endforeach
-                ],
-                datasets: [{
-                    label: '延迟',
-                    data: [
-                        @foreach ($server->status()->whereDate('created_at', DB::raw('CURDATE()'))->get() as $s)
-                        {{$s->ping}},
-                        @endforeach
-                    ],
-                    backgroundColor: [
-                        'rgba(41, 128, 185,0)',
-                    ],
-                    borderColor: [
-                        'rgba(41, 128, 185,255)',
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero:true
-                        }
-                    }]
-                }
-            }
-        });
-    </script>
+  
 
 @endsection

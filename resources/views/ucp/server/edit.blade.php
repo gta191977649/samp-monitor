@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row">
+    
+    <div class="row" id="app">
         @include('layouts.ucp-sidebar')
         <div class="col-md-10">
         <h1>修改服务器: {{$server->name}}</h1>
@@ -28,7 +29,7 @@
             </div>
             <div class="form-group">
                 <label>名称(当离线时使用):</label>
-                <input name= "hostname" type="text" class="form-control" id="text" value="{{$server->name}}" required>
+                <input name= "hostname" type="text" class="form-control" id="text" value="{{$server->hostname}}" required>
             </div>
             <div class="form-group">
                 <label>模式(分类使用):</label>
@@ -47,15 +48,19 @@
             @else <input type="checkbox" id="hide_ck">
             @endif
 
-            
-
             <input type="hidden" name="hide" id="ck_cache" value="{{$server->hide}}"required>
-           
-
             <button type="submit" class="btn btn-primary">添加</button>
         </form>
 
         </div>
     </div>
     
+@endsection
+
+@section('js')
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+
+    <script>
+        CKEDITOR.replace( 'description' );
+    </script>
 @endsection
