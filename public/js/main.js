@@ -8,3 +8,6 @@ $('#hide_ck').change(function () {
     //alert("dwa");
     $("#ck_cache").val(this.checked ? 1 : 0);
 });
+
+//BOOTSTRAP Toolip
+$('i').tooltip();

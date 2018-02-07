@@ -99,7 +99,9 @@ class ServerController extends Controller
         return view("ucp.server.detail",compact("server"));
     }
 
-    public function playerRecordDateRange($id)
+
+
+    public function recordDateRange($id)
     {
         $server = DB::table("status")
             ->select(DB::raw("DATE_FORMAT(`created_at`,'%Y-%m-%d') as `date`"))
@@ -110,7 +112,7 @@ class ServerController extends Controller
        
         return $server;
     }
-    public function playerRecord($id,$date)
+    public function record($id,$date)
     {
         if($date == "NAN")
         {

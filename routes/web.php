@@ -21,18 +21,25 @@ Auth::routes();
 
 
 //对外
-Route::get('/api/get/samp/info/{ip}{port}','SAMPAPIController@getInfo')->name('api.getInfo');
+Route::prefix('api')->group(function () {
+    Route::get('/get/samp/info/{ip}{port}','SAMPAPIController@getInfo')->name('api.getInfo');
 
-//API
-Route::get('/api/samp/info/{ip}/port/{port}','SAMPAPIController@info')->name('api.info');
-Route::get('/api/samp/player/{ip}/port/{port}','SAMPAPIController@player')->name('api.player');
-Route::get('/api/samp/playerlist/{ip}/port/{port}','SAMPAPIController@playerList')->name('api.player.list');
-Route::get('/api/samp/ping/{ip}/port/{port}','SAMPAPIController@ping')->name('api.ping');
-Route::get('/api/samp/rules/{ip}/port/{port}','SAMPAPIController@rules')->name('api.rules');
-Route::get('/api/samp/index','ServerController@indexApi')->name('api.index');
-Route::get('/api/server/playerrecord/{id}/{date}', 'ServerController@playerRecord')->name('server.playerRecord');
-Route::get('/api/server/playerrecdate/{id}/', 'ServerController@playerRecordDateRange')->name('server.playerRecordDateRange');
+    //API
+    Route::get('/samp/info/{ip}/port/{port}','SAMPAPIController@info')->name('api.info');
+    Route::get('/samp/player/{ip}/port/{port}','SAMPAPIController@player')->name('api.player');
+    Route::get('/samp/playerlist/{ip}/port/{port}','SAMPAPIController@playerList')->name('api.player.list');
+    Route::get('/samp/ping/{ip}/port/{port}','SAMPAPIController@ping')->name('api.ping');
+    Route::get('/samp/rules/{ip}/port/{port}','SAMPAPIController@rules')->name('api.rules');
+    Route::get('/samp/index','ServerController@indexApi')->name('api.index');
 
+
+    
+    
+    
+    //图表API
+    Route::get('/server/recorddate/{id}/', 'ServerController@recordDateRange')->name('server.recordDateRange');
+    Route::get('/server/record/{id}/{date}', 'ServerController@record')->name('server.record');
+});
 
 Route::get('/server/detail/{id}', 'ServerController@fontedDetail')->name('server.detail');
 

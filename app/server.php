@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use DB;
 class Server extends Model
 {
     //
@@ -19,5 +19,11 @@ class Server extends Model
     public function status()
     {
         return $this->hasMany("App\SeverStatus");
+    }
+
+    //只返回这周的东西
+    public function thisWeek()
+    {
+        return $this->hasMany("App\SeverStatus")->where( DB::raw('WEEK(created_at)'), '=', date('n') );
     }
 }

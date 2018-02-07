@@ -51,12 +51,13 @@
                                     <td><% status %></td>
                                 </tr>
                                 <tr>
-                                    <td>Ping (基于本机房):</td>
+                                    <td>实时Ping: <i class="fa fa-question-circle-o text-primary" data-toggle="tooltip" data-placement="top" title="实时获得到的延迟 (基于本机房)"></i></td>
                                     <td><% ping %></td>
                                 </tr>
                                 <tr>
-                                    <td>Ping 平均(基于本机房):</td>
-                                    <td>{{$server->status->count() ? round($server->status->avg('ping'))."ms" : "暂无统计"}}</td>
+                                    <td>Ping 平均:  <i class="fa fa-question-circle-o text-primary" data-toggle="tooltip" data-placement="top" title="此服务器本周的平均延迟 (基于本机房)"></i></td>
+                                    <td>{{$server->status->count() ? round($server->thisWeek->avg('ping'))."ms" : "暂无统计"}}</td>
+                        
                                 </tr>
                                 <tr>
                                     <td>玩家:</td>
@@ -64,11 +65,17 @@
                                 </tr>
                                 <tr>
                                     <td>平均玩家:</td>
-                                    <td>{{$server->status->count() ? round($server->status->avg('player')) : "暂无统计"}}</td>
+                                    <td>{{$server->status->count() ? round($server->thisWeek->avg('player')) : "暂无统计"}}</td>
                                 </tr>
                                 <tr>
-                                    <td>最大玩家记录:</td>
-                                    <td>{{$server->status->count() ? $server->status->max('player') : "暂无统计"}}</td>
+                                    <td>历史最大玩家记录:</td>
+                                    <td>{{$server->status->count() ? $server->status->max('player') : "暂无统计"}}
+                                        @if($server->status->count())
+                                        <span class="label label-success">
+                                            {{$server->status()->select('created_at')->orderBy('player', 'desc')->first()->created_at->format('Y-m-d H:m:s')}}
+                                        </span>
+                                        @endif
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>游戏模式:</td>
@@ -108,44 +115,48 @@
 
             @if($server->status->count())
             <!-- 统计图 玩家数 -->
-          
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">统计 - 玩家 <span class="label label-success">{{$server->status()->select('created_at')->orderBy('created_at', 'desc')->first()->created_at->format('Y-m-d')}}</span></div>
-                    
-                    <div class="panel-body">
+            <div id="app">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">统计 - 玩家 <span class="label label-success">{{$server->status()->select('created_at')->orderBy('created_at', 'desc')->first()->created_at->format('Y-m-d')}}</span></div>
+                        
+                        <div class="panel-body">
+                                
+                        @if($server->status->count())
                             
-                    @if($server->status->count())
-                        <div id="app">
-                            <player-record :id="{{$server->id}}"></player-record>
+                                <player-record :id="{{$server->id}}"></player-record>
+                        
+                        @else
+                            <h3 class="text-center" ng-if="!playerlist.length">暂无数据</h3>
+                        @endif
                         </div>
-                    @else
-                        <h3 class="text-center" ng-if="!playerlist.length">暂无数据</h3>
-                    @endif
                     </div>
                 </div>
-            </div>
-          
             
-            <!-- 统计图 Ping -->
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">统计 - Ping <span class="label label-success">{{$server->status()->select('created_at')->orderBy('created_at', 'desc')->first()->created_at->format('Y-m-d')}}</span></div>
-                    @if($server->status->count())
-                        <canvas id="sbmpPing" width="100%" height="20"></canvas>
-                    @else
+                
+                <!-- 统计图 Ping -->
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">统计 - Ping <span class="label label-success">{{$server->status()->select('created_at')->orderBy('created_at', 'desc')->first()->created_at->format('Y-m-d')}}</span></div>
+                        <div class="panel-body">
+                            @if($server->status->count())
+                                <server-ping :id="{{$server->id}}"></server-ping>
+                            
+                            @else
+                                <h3 class="text-center" ng-if="!playerlist.length">暂无数据</h3>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                @else
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">统计</span></div>
                         <h3 class="text-center" ng-if="!playerlist.length">暂无数据</h3>
-                    @endif
+                    </div>
                 </div>
+                @endif
             </div>
-            @else
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">统计</span></div>
-                    <h3 class="text-center" ng-if="!playerlist.length">暂无数据</h3>
-                </div>
-            </div>
-            @endif
         </div>
     </div>
   
@@ -333,4 +344,5 @@
             }
         });
     </script>
+
 @endsection

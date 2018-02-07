@@ -20,9 +20,11 @@ window.Vue = require('vue');
 
 Vue.component('serverlist', require('./components/Serverlist.vue'));
 Vue.component('player-record', require('./components/PlayerRecord.vue'));
+Vue.component('server-ping', require('./components/ServerPing.vue'));
 //Vue.component('player-chart', require('./components/PlayerChart.vue'));
 
 
 const app = new Vue({
     el: '#app'
 });
+
