@@ -45,11 +45,11 @@
         },
         created() {
             //alert(this.divClass)
-            axios.get(`/api/samp/index/`)
+            axios.get('/api/samp/index/')
             .then(response => {
                 this.servers = response.data
                 for (let server of this.servers) {
-                    axios.get(`/api/samp/info/${server.ip}/port/${server.port}`).then(({data}) => {
+                    axios.get('/api/samp/info/'+ server.ip +'/port/'+ server.port ).then(({data}) => {
                         Object.assign(server, data)
                     })
                 }
@@ -68,7 +68,7 @@
         },
         methods:{
             getServerInfo: function($ip,$port){
-                axios.get(`/api/samp/info/`+$ip+`/port/`+$port)
+                axios.get('/api/samp/info/'+$ip+'/port/'+$port)
                     .then(response => {
                         this.dymicInfo.push({
                         hostname: response.data.hostname,

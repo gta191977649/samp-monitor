@@ -19,7 +19,7 @@
         props: ['id'],
         mounted() {
             //获取Date
-            axios.get(`/api/server/recorddate/`+this.id)
+            axios.get('/api/server/recorddate/'+this.id)
                 .then(response => {
                     //alert(`http://127.0.0.1:8000/server/playerrecdate/1`)
                     for (let date of response.data) {
@@ -50,7 +50,7 @@
         methods: {
             renderPlayerChart: function($serverId,$date){
                 //alert($date)
-                axios.get(`/api/server/record/`+$serverId+`/`+$date)
+                axios.get('/api/server/record/'+$serverId+'/'+$date)
                 .then(response => {
                     this.labels = []
                     this.players = []
