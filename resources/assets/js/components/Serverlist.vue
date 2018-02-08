@@ -45,7 +45,7 @@
         },
         created() {
             //alert(this.divClass)
-            axios.get('/api/samp/index/')
+            axios.get('/api/samp/index')
             .then(response => {
                 this.servers = response.data
                 for (let server of this.servers) {
