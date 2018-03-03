@@ -87,8 +87,8 @@
             })
             .then(response => {
                //this.data.push(response.data)  
-               this.data = response.data
-                //Object.assign(this.data, response.data)  
+               //this.data = response.data
+                Object.assign(this.data, response.data)  
                
             })
             .catch(e => {
