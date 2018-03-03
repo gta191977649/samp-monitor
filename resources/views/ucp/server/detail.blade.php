@@ -70,7 +70,7 @@
                 <div class="col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">基本信息</div>
-                    <server-status div-class="table" id="{{$server->id}}" ip="{{$server->ip}}" port="{{$server->port}}"></server-status>
+                    <server-status div-class="table" id="{{$server->id}}" ip="{{gethostbyname($server->ip)}}" port="{{$server->port}}"></server-status>
                             {{--
                             <table class="table">
                                 <tbody>
@@ -144,7 +144,7 @@
                 <div class="col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">在线玩家</div>
-                        <player-list div-class="table" ip="{{$server->ip}}" port="{{$server->port}}"></player-list>
+                        <player-list div-class="table" ip="{{gethostbyname($server->ip)}}" port="{{$server->port}}"></player-list>
                         
                     </div>
                 </div>

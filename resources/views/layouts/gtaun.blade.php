@@ -9,7 +9,7 @@
 	<meta name="keywords" content="Easy-MP">
 	<link rel="shortcut icon" href="favicon.ico">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/un.css') }}">
 	<title>Project Sparrow SAMP服務器列表</title>
 </head>
 <body>
@@ -19,11 +19,11 @@
 		<h1>SAMP服务器列表</h1>
 		
 		<ul>
-			<li><a href="index.php" title="主页">主页</a></li>
+			<li><a href="/" title="主页">主页</a></li>
 			<li class="current"><a href="{{ route('index') }}" title="所有运营中的服务器的列表">服务器</a>
             </li>
-		    <li><a href="files.php" title="下载客户端">下载</a></li>
-			<li><a href="about.php" title="关于我们">关于</a></li>
+		    <li><a href="#" title="下载客户端">下载</a></li>
+			<li><a href="#" title="关于我们">关于</a></li>
 	  </ul>
 	</div>
 </div>

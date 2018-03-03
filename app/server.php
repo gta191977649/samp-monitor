@@ -10,7 +10,7 @@ class Server extends Model
     protected $fillable = [
         'id','hostname', 'ip', 'port','gamemode','description','user_id','hide'
     ];
-    protected $appends = array('players','lastrec','timeout');
+    protected $appends = array('players','lastrec','timeout','realip');
     
     public function getPlayersAttribute()
     {
@@ -24,6 +24,9 @@ class Server extends Model
     public function getTimeoutAttribute() {
         $data = $this->hasMany("App\SeverStatus")->orderBy('created_at', 'desc')->first();
         return $data->timeout;
+    }
+    public function getRealipAttribute(){
+        return gethostbyname($this->ip);
     }
     public function user()
     {

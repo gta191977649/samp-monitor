@@ -14,6 +14,7 @@
                     <td>地址:</td>
                     <td>
                         {{this.ip}}:{{this.port}}
+                        <img v-bind:src="'https://ipfind.co/flag?ip='+this.ip+'&auth=05a106a4-0d26-4a2f-8f1e-b606f7affa2d'" width="25" height="25">
                     </td>
                 </tr>
                 <tr>

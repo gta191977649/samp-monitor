@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>收入服务器一览</h1>
-
+    <h1>SAMP服务器列表</h1>
+    <hr/>
 	
     @if(!$servers->count())
         <div class="panel panel-default">

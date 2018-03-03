@@ -8,7 +8,7 @@
         {{dymicInfo}}-->
         
         <h1 v-show="servers.length == 0" class="text-center">Loading..</h1>
-        <table class="table">
+        <table class="table table-bordered table-hover">
             <thead>
                 <tr>
                     <th>服务器</th>
@@ -16,6 +16,7 @@
                     <th>模式</th>
                     <th>玩家</th>
                     <th>记录时间</th>
+                    <th>状态</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,6 +29,8 @@
                     <td>{{server.players}}</td>
                     <td>
                         <span class="label label-default">{{server.lastrec}}</span>
+                    </td>
+                    <td>
                         <div v-if="server.timeout">
                             <span class="label label-danger"><i class="fa fa-times"></i></span>
                         </div>
