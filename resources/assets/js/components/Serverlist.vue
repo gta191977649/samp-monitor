@@ -29,10 +29,10 @@
                     <td>
                         <span class="label label-default">{{server.lastrec}}</span>
                         <div v-if="server.timeout">
-                            <span class="label label-success"><i class="fa fa-check"></i></span>
+                            <span class="label label-danger"><i class="fa fa-times"></i></span>
                         </div>
                         <div v-else>
-                             <span class="label label-danger"><i class="fa fa-times"></i></span>
+                            <span class="label label-success"><i class="fa fa-check"></i></span>
                         </div>
                     </td>
 
