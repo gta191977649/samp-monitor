@@ -10,15 +10,17 @@
 
     <title>Project Sparrow SAMP服務器列表</title>
 
-    <!-- Styles -->
+    <!-- Bootstrap -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Custom -->
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <!-- Style -->
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
 </head>
 <body>
     <div>
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-inverse navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
 
@@ -32,7 +34,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        SBMP 在线服务器列表 <small>v0.1a<small>
+                        SBMP 在线服务器列表 <small>v1.0b<small>
                     </a>
                 </div>
 

@@ -1,6 +1,8 @@
 <template>
     <div>
         <h3 class="text-center" v-show="!data.length">暂无玩家</h3>
+        <h3 class="text-center" v-show="data == null">取得失败</h3>
+
         <table class="table" v-show="data.length">
             
             <tbody>

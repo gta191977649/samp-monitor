@@ -25,7 +25,8 @@ Route::prefix('api')->group(function () {
     Route::get('/get/samp/info/{ip}{port}','SAMPAPIController@getInfo')->name('api.getInfo');
 
     //API
-    Route::get('/samp/info/{ip}/port/{port}','SAMPAPIController@info')->name('api.info');
+    Route::get('/samp/live/info/{ip}/port/{port}','SAMPAPIController@liveInfo')->name('api.liveInfo.info');
+    Route::get('/samp/info/{id}','SAMPAPIController@info')->name('api.info');
     Route::get('/samp/player/{ip}/port/{port}','SAMPAPIController@player')->name('api.player');
     Route::get('/samp/playerlist/{ip}/port/{port}','SAMPAPIController@playerList')->name('api.player.list');
     Route::get('/samp/ping/{ip}/port/{port}','SAMPAPIController@ping')->name('api.ping');
@@ -36,6 +37,7 @@ Route::prefix('api')->group(function () {
     //图表API
     Route::get('/server/recorddate/{id}/', 'ServerController@recordDateRange')->name('server.recordDateRange');
     Route::get('/server/record/{id}/{date}', 'ServerController@record')->name('server.record');
+    //头像
     Route::get('/user/gravator/{email}', 'GravatorController@imgUrl')->name('api.avator');
 });
 

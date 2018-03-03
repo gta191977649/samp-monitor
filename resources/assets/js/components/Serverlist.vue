@@ -3,7 +3,7 @@
        
         <!--
         Info:
-         {{servers}}
+         
 
         {{dymicInfo}}-->
         
@@ -15,7 +15,7 @@
                     <th>地址</th>
                     <th>模式</th>
                     <th>玩家</th>
-                    <th>状态</th>
+                    <th>记录时间</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,11 +25,18 @@
                     <td><a v-bind:href="'/server/detail/'+server.id"><img src="/css/samp.gif"> {{ server.hostname }}</img></a></td>
                     <td>{{server.ip}}:{{server.port}}</td>
                     <td>{{server.gamemode}}</td>
-                    <td>{{server.maxplayers ? server.players + '/' + server.maxplayers : '-' }}</td>
-                    <td v-if="server.maxplayers"><i class="fa fa-check"></i></td>
-                    <td v-else><i class="fa fa-times"></i></td>
+                    <td>{{server.players}}</td>
+                    <td>
+                        <span class="label label-default">{{server.lastrec}}</span>
+                        <div v-if="server.timeout">
+                            <span class="label label-success"><i class="fa fa-check"></i></span>
+                        </div>
+                        <div v-else>
+                             <span class="label label-danger"><i class="fa fa-times"></i></span>
+                        </div>
+                    </td>
 
-                    
+                  
                 </tr>
             </tbody>
         </table>
@@ -37,6 +44,7 @@
 </template>
 
 <script>
+   
     export default {
         mounted() {
             
@@ -48,11 +56,14 @@
             axios.get('/api/samp/index')
             .then(response => {
                 this.servers = response.data
+                /*
                 for (let server of this.servers) {
-                    axios.get('/api/samp/info/'+ server.ip +'/port/'+ server.port ).then(({data}) => {
-                        Object.assign(server, data)
+                    axios.get('/api/samp/info/'+server.id ).then(({data}) => {
+                       
+                       Object.assign(server, data)
                     })
                 }
+                */
                
             })
             .catch(e => {
@@ -67,13 +78,28 @@
             }
         },
         methods:{
-            getServerInfo: function($ip,$port){
-                axios.get('/api/samp/info/'+$ip+'/port/'+$port)
+
+            getServerLiveInfo: function($ip,$port){
+                axios.get('/api/samp/live/info/'+$ip+'/port/'+$port)
                     .then(response => {
                         this.dymicInfo.push({
                         hostname: response.data.hostname,
                         players: response.data.players,
                         maxplayers: response.data.maxplayers,
+                        gamemode: response.data.gamemode
+                    })
+                        
+                })
+                .catch(e => {
+                     
+                })
+            },
+            getServerInfo: function($id){
+                axios.get('/api/samp/info/'+$id)
+                    .then(response => {
+                        this.dymicInfo.push({
+                        hostname: response.data.hostname,
+                        players: response.data.players,
                         gamemode: response.data.gamemode
                     })
                         

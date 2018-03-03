@@ -8,7 +8,14 @@
         @else
             <div class="col-md-10"  id="sbmpDetail"  ng-controller="sbmpQueryController">
         @endif
-        <h1><% hostname.isValid ? "{{$server->hostname}}" : hostname %> - 详细信息</h1>
+        <div class="alert alert-info">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>提示</strong> 因为网络波动,有可能会造成部分信息取得失败,如果发生，请尝试刷新此页面解决。
+        </div>
+
+        <h1 class="text-primary">{{--<% hostname.isValid ? "{{$server->hostname}}" : hostname %> - 详细信息--}}
+        {{$server->hostname}} - 详细信息
+        </h1>
         <hr/>
         <div class="col-md-12" style="margin-bottom:10px;">
             <a href="samp://{{$server->ip}}:{{$server->port}}" class="btn btn-success"><i class="fa fa-gamepad" aria-hidden="true"></i>
@@ -63,8 +70,8 @@
                 <div class="col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">基本信息</div>
-                            {{--<server-status div-class="table" ip="{{$server->ip}}" port="{{$server->port}}"></server-status> --}}
-                     
+                    <server-status div-class="table" id="{{$server->id}}" ip="{{$server->ip}}" port="{{$server->port}}"></server-status>
+                            {{--
                             <table class="table">
                                 <tbody>
                                 
@@ -131,7 +138,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                           
+                            --}}
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -193,7 +200,7 @@
 
 @section('js')
     <!-- JS -->
-
+    {{--
     <script>    
         angular.module('statusQuery', [], function($interpolateProvider) {
             //解决该死的blade引擎和angularjs的syntax冲突
@@ -291,7 +298,7 @@
         angular.bootstrap(document.getElementById("sbmpDetail"), ['statusQuery']);
         
     </script>
-
+    --}}
 
   
 
