@@ -32,10 +32,7 @@
                     <td>SAMP版本:</td>
                     <td>{{this.data.version? this.data.version : "取得失败"}}</td>
                 </tr>
-                <tr>
-                    <td>状态:</td>
-                    <td>{{this.ping == null ? "超时" : "正常"}}</td>
-                </tr>
+               
                 <tr>
                     <td>实时 Ping: <i class="fa fa-question-circle-o text-primary" data-toggle="tooltip" data-placement="top" title="实时获得到的延迟 (基于本机房)"></i></td>
                     <td>{{this.ping == null ? "超时" : this.ping + "ms"}}</td>
@@ -79,12 +76,7 @@
             
             
             //Rules
-            axios.get('/api/samp/rules/'+this.ip+'/port/'+this.port+"/",{
-                    headers: {  common: {
-                        'Accept': 'application/json, text/plain, */*'
-                    },
-                }
-            })
+            axios.get('/api/samp/rules/'+this.ip+'/port/'+this.port+"/")
             .then(response => {
                //this.data.push(response.data)  
                //this.data = response.data
@@ -92,53 +84,36 @@
                
             })
             .catch(e => {
-                alert(e)
+                console.log(e)
             }),
              
             //基本数据库信息查询
-            axios.get('/api/samp/info/'+this.id+"/",{
-                    headers: {  common: {
-                        'Accept': 'application/json, text/plain, */*'
-                    },
-                }
-            })
+            axios.get('/api/samp/info/'+this.id+"/")
             .then(response => {
                 //this.data = response.data ?  response.data : "取得失败" 
                 Object.assign(this.data, response.data)               
             })
             .catch(e => {
-                alert(e)
+                console.log(e)
             })
 
             //获得玩家列表查询
-            axios.get('/api/samp/live/info/'+this.ip+'/port/'+this.port+"/",{
-                    headers: {  common: {
-                        'Accept': 'application/json, text/plain, */*'
-                    },
-                }
-            })
-            
+            axios.get('/api/samp/live/info/'+this.ip+'/port/'+this.port+"/")
             .then(response => {
                 Object.assign(this.data, response.data)  
-                
 
             })
             .catch(e => {
-                alert(e)
+                console.log(e)
             })
 
             //实施Ping
-            axios.get('/api/samp/ping/'+this.ip+'/port/'+this.port+"/",{
-                    headers: {  common: {
-                        'Accept': 'application/json, text/plain, */*'
-                    },
-                }
-            })
+            axios.get('/api/samp/ping/'+this.ip+'/port/'+this.port+"/")
             .then(response => {
                 this.ping = response.data ?  response.data : "取得失败"         
             })
             .catch(e => {
-                alert(e)
+                console.log(e)
             })
           
 
