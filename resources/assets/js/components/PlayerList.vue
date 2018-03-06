@@ -32,7 +32,7 @@
         created() {
             
             //获得玩家列表查询
-            axios.get('/api/samp/playerlist/'+this.ip+'/port/'+this.port+"/",{
+            axios.get('/api/samp/playerlist/'+this.ip+'/port/'+this.port,{
                     headers: {  common: {
                         'Accept': 'application/json, text/plain, */*'
                     },
