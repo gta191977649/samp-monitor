@@ -12,6 +12,12 @@
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             <strong>提示</strong> 因为网络波动,有可能会造成部分信息取得失败,如果发生，请尝试刷新此页面解决。
         </div>
+        @if($server->failTimes > 47) 
+            <div class="alert alert-warning">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>提示</strong> 该服务器已经超过<strong>48</strong>小时无Ping回应，目前已经自动暂停该服务器的信息收集统计。
+            </div>
+        @endif
 
         <h1 class="text-primary">{{--<% hostname.isValid ? "{{$server->hostname}}" : hostname %> - 详细信息--}}
         {{$server->hostname}} - 详细信息
@@ -89,19 +95,23 @@
                                 </tr>
                                 <tr>
                                     <td>地图版本:</td>
-                                    <td>{{$server->map}}</td>
+                                    <td>{{$server->map ? $server->map : "暂无记录"}}</td>
                                 </tr>
                                 <tr>
                                     <td>SAMP版本:</td>
-                                    <td>{{$server->version}}</td>
+                                    <td>{{$server->version ? $server->version : "暂无记录" }}</td>
                                 </tr>
                                 <tr>
                                     <td>状态:</td>
-                                    <td> @if($server->timeout)
-                                        <span class="label label-danger"><i class="fa fa-times"></i></span>
-                                    @else
-                                        <span class="label label-success"><i class="fa fa-check"></i></span>
-                                    @endif</td>
+                                    <td>
+                                        @if($server->timeout == 1)
+                                            <span class="label label-danger"><i class="fa fa-times"></i></span>
+                                        @elseif($server->timeout == -1)
+                                        <span class="label label-info"><i class="fa fa-clock-o"></i></span>
+                                        @else
+                                            <span class="label label-success"><i class="fa fa-check"></i></span>
+                                        @endif
+                                    </td>
                                 </tr>
                                 <tr id="live-ping">
                                     <td>实时 Ping: <i class="fa fa-question-circle-o text-primary" data-toggle="tooltip" data-placement="top" title="实时获得到的延迟 (基于本机房)"></i></td>
@@ -114,7 +124,7 @@
                                 </tr>
                                 <tr>
                                     <td>玩家:</td>
-                                    <td>{{$server->players}}/{{$server->maxplayers}}</td>
+                                    <td>{{$server->players}}</td>
                                 </tr>
                                 <tr>
                                     <td>平均玩家:</td>

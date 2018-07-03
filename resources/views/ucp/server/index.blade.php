@@ -37,7 +37,11 @@
     <script src="{{ asset('js/angular-route.js') }}"></script>
     @foreach($servers as $server)
 	<tr id="App{{$server->id}}"  ng-controller="customersCtrl{{$server->id}}">
-        <td><p><a href="{{ route('ucp.server.detail',['id'=> $server->id]) }}"><img src="{{ asset('css/samp.gif') }}" alt="" border="0"> {{ $server->hostname }}  </a></p></td>
+        <td>
+            
+            <p>@if($server->failTimes > 47) 
+                    <span class="text-danger" ><i class="fa fa-times" data-toggle="tooltip" data-placement="top" title="超过48小时无ping回应,系统已经自动暂停数据收集"></i></span>
+                    @endif<a href="{{ route('ucp.server.detail',['id'=> $server->id]) }}"><img src="{{ asset('css/samp.gif') }}" alt="" border="0"> {{ $server->hostname }}  </a></p></td>
 	    <td>{{ $server->ip }}:{{ $server->port }}</td>
 	    <td>{{ (strlen($server->gamemode) > 15) ? substr($server->gamemode, 0, 15) . '...' :$server->gamemode }}</td>
 	    <td>{{ $server->player() }}</td>

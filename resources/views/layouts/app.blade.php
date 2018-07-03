@@ -92,9 +92,10 @@
     
     <!-- Scripts -->
     
-    <script src="//cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+    
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    <script src="//cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
     @yield('js')
 </body>
 </html>

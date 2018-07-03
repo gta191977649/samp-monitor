@@ -8,7 +8,7 @@ class Server extends Model
 {
     //
     protected $fillable = [
-        'id','hostname', 'ip', 'port','gamemode','description','user_id','hide','map','weburl','version','maxplayers'
+        'id','hostname', 'ip', 'port','gamemode','description','user_id','hide','map','weburl','version','maxplayers','failTimes'
     ];
     protected $appends = array('players','lastrec','timeout','realip');
     
@@ -21,13 +21,13 @@ class Server extends Model
         $data = $this->hasMany("App\SeverStatus")->select("created_at")->orderBy('created_at', 'desc')->first();
         if($data)
             return "{$data->created_at}";
-        return NULL;
+        return "无记录";
     }
     public function getTimeoutAttribute() {
         $data = $this->hasMany("App\SeverStatus")->orderBy('created_at', 'desc')->first();
         if($data)
             return $data->timeout;
-        return NULL;
+        return -1;
     }
     public function getRealipAttribute(){
         return gethostbyname($this->ip);
@@ -44,7 +44,9 @@ class Server extends Model
 
     public function player() {
         $data = $this->hasMany("App\SeverStatus")->orderBy('created_at', 'desc')->first();
-        return $data["player"];
+        if($data)
+            return $data["player"]."/".$this->maxplayers;
+        return "无记录";
     }
  
     //只返回这周的东西

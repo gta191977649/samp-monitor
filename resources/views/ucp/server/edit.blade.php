@@ -16,7 +16,7 @@
             </ul>
         </div>
         @endif
-        <form action="{{ route('ucp.server.update',['id'=>$server->id]) }}" method = "post">
+        <form action="{{ route('ucp.server.update',['id'=>$server->id]) }}" method = "post" id="server-forms">
             {{ csrf_field() }}
 
             <div class="form-group">
@@ -29,6 +29,7 @@
             </div>
             <div class="form-group">
                 <label>名称(当离线时使用):</label>
+                
                 <input name= "hostname" type="text" class="form-control" id="text" value="{{$server->hostname}}" required>
             </div>
             <div class="form-group">
@@ -58,9 +59,11 @@
 @endsection
 
 @section('js')
+   
     <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
 
     <script>
         CKEDITOR.replace( 'description' );
     </script>
+
 @endsection

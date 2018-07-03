@@ -20,7 +20,7 @@
 
             <div class="form-group">
                 <label>地址:</label>
-                <input v-model.lazy="serverAddr" name= "ip" type="text" class="form-control" id="ip" placeholder="服务器地址" required>
+                <input  v-model.lazy="serverAddr" name= "ip" type="text" class="form-control" id="ip" placeholder="服务器地址" required>
             </div>
             <div class="form-group">
                 <label>端口:</label>
@@ -57,6 +57,7 @@
     
 @endsection
 @section('js')
+    
     <script>
         new Vue({
             el: "#server-forms",
@@ -98,5 +99,11 @@
                 }
             }
         })
+    </script>
+
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+
+    <script>
+        CKEDITOR.replace( 'description' );
     </script>
 @endsection

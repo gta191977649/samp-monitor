@@ -20,6 +20,11 @@ class CreateServersTable extends Migration
             $table->text('port');
             $table->text('description')->nullable();
             $table->text('gamemode');
+            $table->text('map');
+            $table->text('weburl');
+            $table->text('version');
+            $table->integer('maxplayers');
+            $table->integer('failTimes')->default(0);
             $table->boolean('hide')->default(0);
             $table->integer('rate')->default(0);
             $table->integer('user_id');

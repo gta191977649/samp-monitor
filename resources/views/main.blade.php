@@ -30,22 +30,24 @@
                 <th>状态</th>
             </tr>
             @foreach($servers as $server)
-                
+                @if($server->failTimes < 48)
                 <tr>
                 <td><a href="{{route('server.detail',['id'=>$server->id])}}">{{$server->hostname}}</a></td>
                     <td>{{$server->ip}}:{{$server->port}}</td>
                     <td>{{$server->gamemode}}</td>
-                    <td>{{$server->players}}/{{$server->maxplayers}}</td>
+                    <td>{{$server->players}}</td>
                     <td><span class="label label-default">{{$server->lastrec}}</span></td>
                     <td>
-                        @if($server->timeout)
+                        @if($server->timeout == 1)
                             <span class="label label-danger"><i class="fa fa-times"></i></span>
+                        @elseif($server->timeout == -1)
+                        <span class="label label-info"><i class="fa fa-clock-o"></i></span>
                         @else
                             <span class="label label-success"><i class="fa fa-check"></i></span>
                         @endif
                     </td>
                 </tr>
-        
+                @endif
             @endforeach
             </table>
 
