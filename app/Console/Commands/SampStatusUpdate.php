@@ -44,6 +44,9 @@ class SampStatusUpdate extends Command
         {
             if($server->failTimes < 48)
             {
+                
+                $this->output->write('Process server  = '.$server->hostname."\n", false);
+
                 $query = new SampQuery($server->ip,$server->port);
 
                 if($query->connect()) //如果在线

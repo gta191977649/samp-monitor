@@ -286,7 +286,7 @@ class SampQuery {
     private function assemblePacket($type) {
 		// <editor-fold defaultstate="collapsed" desc="Assemble Packet">
         $packet = "SAMP";
-        $packet .= chr(strtok($this->server, "."));
+        $packet .= chr(intval(strtok($this->server, ".")));
         $packet .= chr(strtok("."));
         $packet .= chr(strtok("."));
         $packet .= chr(strtok("."));
