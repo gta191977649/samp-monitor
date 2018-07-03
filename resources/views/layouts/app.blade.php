@@ -34,7 +34,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        SBMP 在线服务器列表 <small>v1.0b<small>
+                        SBMP 在线服务器列表 <small>v1.0c<small>
                     </a>
                 </div>
 
@@ -91,6 +91,8 @@
     </footer>
     
     <!-- Scripts -->
+    
+    <script src="//cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
     @yield('js')

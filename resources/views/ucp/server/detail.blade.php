@@ -70,74 +70,79 @@
                 <div class="col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">基本信息</div>
-                    <server-status div-class="table" id="{{$server->id}}" ip="{{gethostbyname($server->ip)}}" port="{{$server->port}}"></server-status>
-                            {{--
-                            <table class="table">
-                                <tbody>
-                                
-                                    <tr>
-                                        <td>服务器名:</td>
-                                        <td><% hostname.isValid ? "{{$server->hostname}}" : hostname %></td>
-                                    </tr>
-                                    <tr>
-                                        <td>地址:</td>
-                                        <td>{{gethostbyname($server->ip)}}:{{$server->port}}
-                                        <img src="https://ipfind.co/flag?ip={{gethostbyname($server->ip)}}&auth=05a106a4-0d26-4a2f-8f1e-b606f7affa2d" width="25" height="25">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>网站:</td>
-                                        <td ng-bind-html = "weburl"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>地图版本:</td>
-                                        <td><% mapversion %></td>
-                                    </tr>
-                                    <tr>
-                                        <td>SAMP版本:</td>
-                                        <td><% version %></td>
-                                    </tr>
-                                    <tr>
-                                        <td>状态:</td>
-                                        <td><% status %></td>
-                                    </tr>
-                                    <tr>
-                                        <td>实时 Ping: <i class="fa fa-question-circle-o text-primary" data-toggle="tooltip" data-placement="top" title="实时获得到的延迟 (基于本机房)"></i></td>
-                                        <td><% ping %></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ping 平均:  <i class="fa fa-question-circle-o text-primary" data-toggle="tooltip" data-placement="top" title="此服务器本周的平均延迟 (基于本机房)"></i></td>
-                                        <td>{{$server->status->count() ? round($server->thisWeek->avg('ping'))."ms" : "暂无统计"}}</td>
+                        <table class="table">
+                            <tbody>
                             
-                                    </tr>
-                                    <tr>
-                                        <td>玩家:</td>
-                                        <td><% players %></td>
-                                    </tr>
-                                    <tr>
-                                        <td>平均玩家:</td>
-                                        <td>{{$server->status->count() ? round($server->thisWeek->avg('player')) : "暂无统计"}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>历史最大玩家记录:</td>
-                                        <td>{{$server->status->count() ? $server->status->max('player') : "暂无统计"}}
-                                            @if($server->status->count())
-                                            <span class="label label-success">
-                                                {{$server->status()->select('created_at')->orderBy('player', 'desc')->first()->created_at->format('Y-m-d H:m:s')}}
-                                            </span>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>游戏模式:</td>
-                                        <td><% gamemode.isValid ? "{{$server->gamemode}}" : gamemode %></td>
-                                    </tr>
-                                    <tr>
-                                        <td>评价:</td>
-                                        <td>{{$server->rate}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                <tr>
+                                    <td>服务器名:</td>
+                                    <td>{{$server->hostname}}</td>
+                                </tr>
+                                <tr>
+                                    <td>地址:</td>
+                                    <td>{{gethostbyname($server->ip)}}:{{$server->port}}
+                                    <img src="https://ipfind.co/flag?ip={{gethostbyname($server->ip)}}&auth=05a106a4-0d26-4a2f-8f1e-b606f7affa2d" width="25" height="25">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>网站:</td>
+                                    <td><a href="http://{{$server->weburl}}" target="_blank">{{$server->weburl}}</a></td>
+                                </tr>
+                                <tr>
+                                    <td>地图版本:</td>
+                                    <td>{{$server->map}}</td>
+                                </tr>
+                                <tr>
+                                    <td>SAMP版本:</td>
+                                    <td>{{$server->version}}</td>
+                                </tr>
+                                <tr>
+                                    <td>状态:</td>
+                                    <td> @if($server->timeout)
+                                        <span class="label label-danger"><i class="fa fa-times"></i></span>
+                                    @else
+                                        <span class="label label-success"><i class="fa fa-check"></i></span>
+                                    @endif</td>
+                                </tr>
+                                <tr id="live-ping">
+                                    <td>实时 Ping: <i class="fa fa-question-circle-o text-primary" data-toggle="tooltip" data-placement="top" title="实时获得到的延迟 (基于本机房)"></i></td>
+                                    <td><live-ping ip="{{gethostbyname($server->ip)}}" port="{{$server->port}}"></live-ping></td>
+                                </tr>
+                                <tr>
+                                    <td>Ping 平均:  <i class="fa fa-question-circle-o text-primary" data-toggle="tooltip" data-placement="top" title="此服务器本周的平均延迟 (基于本机房)"></i></td>
+                                    <td>{{$server->status->count() ? round($server->thisWeek->avg('ping'))."ms" : "暂无统计"}}</td>
+                        
+                                </tr>
+                                <tr>
+                                    <td>玩家:</td>
+                                    <td>{{$server->players}}/{{$server->maxplayers}}</td>
+                                </tr>
+                                <tr>
+                                    <td>平均玩家:</td>
+                                    <td>{{$server->status->count() ? round($server->thisWeek->avg('player')) : "暂无统计"}}</td>
+                                </tr>
+                                <tr>
+                                    <td>历史最大玩家记录:</td>
+                                    <td>{{$server->status->count() ? $server->status->max('player') : "暂无统计"}}
+                                        @if($server->status->count())
+                                        <span class="label label-success">
+                                            {{$server->status()->select('created_at')->orderBy('player', 'desc')->first()->created_at->format('Y-m-d H:m:s')}}
+                                        </span>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>游戏模式:</td>
+                                    <td>{{$server->gamemode}}</td>
+                                </tr>
+                                <tr>
+                                    <td>评价:</td>
+                                    <td>{{$server->rate}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                            {{--
+                             <server-status div-class="table" id="{{$server->id}}" ip="{{gethostbyname($server->ip)}}" port="{{$server->port}}"></server-status>
+                            
                             --}}
                     </div>
                 </div>
@@ -200,6 +205,7 @@
 
 @section('js')
     <!-- JS -->
+  
     {{--
     <script>    
         angular.module('statusQuery', [], function($interpolateProvider) {
@@ -299,7 +305,5 @@
         
     </script>
     --}}
-
-  
 
 @endsection

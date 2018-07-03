@@ -23,6 +23,7 @@ Vue.component('player-record', require('./components/PlayerRecord.vue'));
 Vue.component('server-ping', require('./components/ServerPing.vue'));
 Vue.component('player-list', require('./components/PlayerList.vue'));
 Vue.component('server-status', require('./components/ServerStatus.vue'));
+Vue.component('live-ping', require('./components/LivePing.vue'));
 //Vue.component('player-chart', require('./components/PlayerChart.vue'));
 
 

@@ -47,12 +47,23 @@ class SampStatusUpdate extends Command
             if($query->connect()) //如果在线
             {
                 $info = $query->getInfo();
+                $rule = $query->getRules();
                 $ping = $query->getPing();
-    
+                
+                
+                $server->update([
+                    "hostname" => $server->hostname == $info["hostname"] || empty($info["hostname"]) ? $server->hostname : $info["hostname"],
+                    "gamemode" => $server->gamemode == $info["gamemode"] || empty($info["gamemode"]) ? $server->gamemode : $info["gamemode"],
+                    "map" => $server->map == $rule["mapname"] || empty($rule["mapname"]) ? $server->map : $rule["mapname"],
+                    "version" => $server->version == $rule["version"] || empty($rule["version"]) ? $server->version : $rule["version"],
+                    "weburl" => $server->weburl == $rule["weburl"] || empty($rule["weburl"]) ? $server->weburl : $rule["weburl"],
+                    "maxplayers" => $server->maxplayers == $info["maxplayers"] || $info["maxplayers"] == '' ? $server->maxplayers : $info["maxplayers"],
+                ]);
 
                 $server->status()->create([
                     "player" => $info["players"] ? $info["players"] : 0 ,
                     "ping" => $ping,
+                    
                     "timeout" => false,
                 ]); 
                 

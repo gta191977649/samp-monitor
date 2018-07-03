@@ -26,6 +26,7 @@ Route::prefix('api')->group(function () {
 
     //API
     Route::get('/samp/live/info/{ip}/port/{port}','SAMPAPIController@liveInfo')->name('api.liveInfo.info');
+    Route::get('/samp/live/rule/{ip}/port/{port}','SAMPAPIController@liveRule')->name('api.liveInfo.rule');
     Route::get('/samp/info/{id}','SAMPAPIController@info')->name('api.info');
     Route::get('/samp/player/{ip}/port/{port}','SAMPAPIController@player')->name('api.player');
     Route::get('/samp/playerlist/{ip}/port/{port}','SAMPAPIController@playerList')->name('api.player.list');

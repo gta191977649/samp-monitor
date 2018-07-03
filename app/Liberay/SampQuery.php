@@ -72,6 +72,7 @@ class SampQuery {
 
         $serverInfo = array();
 
+        $serverInfo['status'] = 200;
         $serverInfo['password'] = (integer) ord(fread($this->sock, 1));
 
         $serverInfo['players'] = (integer) $this->toInt(fread($this->sock, 2));
@@ -91,14 +92,16 @@ class SampQuery {
         $strLen = ord(fread($this->sock, 4));
         if($strLen) $serverInfo['gamemode'] = (string) fread($this->sock, $strLen);
 
-        $serverInfo['map'] = "";
+        $serverInfo['language'] = "";
         $strLen = ord(fread($this->sock, 4));
-        if($strLen) $serverInfo['map'] = (string) fread($this->sock, $strLen);
+        if($strLen) $serverInfo['language'] = (string) fread($this->sock, $strLen);
+
+       
         //UTF8处理
         
         $serverInfo['gamemode'] = iconv("GBK","UTF-8//IGNORE",$serverInfo['gamemode']);
         $serverInfo['hostname'] = iconv("GBK","UTF-8//IGNORE",$serverInfo['hostname']);
-        $serverInfo['map'] = iconv("GBK","UTF-8//IGNORE",$serverInfo['map']);
+        $serverInfo['language'] = iconv("GBK","UTF-8//IGNORE",$serverInfo['language']);
         //$serverInfo['hostname'] = utf8_encode($serverInfo['hostname']);
         
         //$serverInfo['gamemode'] = utf8_encode($serverInfo['gamemode']);

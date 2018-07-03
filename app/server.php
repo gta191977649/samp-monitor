@@ -8,7 +8,7 @@ class Server extends Model
 {
     //
     protected $fillable = [
-        'id','hostname', 'ip', 'port','gamemode','description','user_id','hide'
+        'id','hostname', 'ip', 'port','gamemode','description','user_id','hide','map','weburl','version','maxplayers'
     ];
     protected $appends = array('players','lastrec','timeout','realip');
     
@@ -19,11 +19,15 @@ class Server extends Model
 
     public function getLastrecAttribute(){
         $data = $this->hasMany("App\SeverStatus")->select("created_at")->orderBy('created_at', 'desc')->first();
-        return "{$data->created_at}";
+        if($data)
+            return "{$data->created_at}";
+        return NULL;
     }
     public function getTimeoutAttribute() {
         $data = $this->hasMany("App\SeverStatus")->orderBy('created_at', 'desc')->first();
-        return $data->timeout;
+        if($data)
+            return $data->timeout;
+        return NULL;
     }
     public function getRealipAttribute(){
         return gethostbyname($this->ip);

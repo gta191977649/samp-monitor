@@ -12,14 +12,47 @@
         </div>
         </div>
     @else
-    
+        {{--
         <div id="app">
             <div class="table-responsive"> 
                 <serverlist div-class="table"></serverlist>
             </div>
         </div>
+        --}}
+        <div class="table-responsive">    
+            <table class="table table-bordered border-radius">
+            <tr>
+                <th>服务器</th>
+                <th>地址</th>
+                <th>模式</th>
+                <th>玩家</th>
+                <th>记录时间</th>
+                <th>状态</th>
+            </tr>
+            @foreach($servers as $server)
+                
+                <tr>
+                <td><a href="{{route('server.detail',['id'=>$server->id])}}">{{$server->hostname}}</a></td>
+                    <td>{{$server->ip}}:{{$server->port}}</td>
+                    <td>{{$server->gamemode}}</td>
+                    <td>{{$server->players}}/{{$server->maxplayers}}</td>
+                    <td><span class="label label-default">{{$server->lastrec}}</span></td>
+                    <td>
+                        @if($server->timeout)
+                            <span class="label label-danger"><i class="fa fa-times"></i></span>
+                        @else
+                            <span class="label label-success"><i class="fa fa-check"></i></span>
+                        @endif
+                    </td>
+                </tr>
         
+            @endforeach
+            </table>
+
+        </div>
     @endif
+    {{ $servers->links() }}
+
     {{--
     
     <div class="table-responsive">    

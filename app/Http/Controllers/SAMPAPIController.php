@@ -27,6 +27,7 @@ class SAMPAPIController extends Controller
         $serv = Server::findOrFail($id);
         
         $out = [
+            "status" => 200,
             "hostname" => $serv->hostname,
             "players" => $serv->player(),
             "gamemode" => $serv->gamemode,
@@ -47,7 +48,20 @@ class SAMPAPIController extends Controller
             return $query->getInfo();
         }
        
-        return null;
+        return ["status" => 404 ];
+    }
+
+ 
+    public function liveRule($ip,$port)
+    {
+        $query = new SampQuery($ip,$port);
+
+        if ($query->connect()) {
+
+            return $query->getRules();
+        }
+       
+        return ["status" => 404 ];
     }
 
  
