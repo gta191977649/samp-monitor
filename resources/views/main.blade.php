@@ -4,7 +4,7 @@
     <h1>SAMP服务器列表</h1>
     <hr/>
 	
-    @if(!$servers->count())
+    @if(!$servers->where('failTimes','<','48')->count())
         <div class="panel panel-default">
         <div class="panel-heading">提示</div>
         <div class="panel-body">
