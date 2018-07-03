@@ -8,7 +8,13 @@
 	<meta http-equiv="Content-Language" content="zh-cn">
 	<meta name="keywords" content="Easy-MP">
 	<link rel="shortcut icon" href="favicon.ico">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	{{--
+	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	--}}
+	<link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- font-awesome -->
+	<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/un.css') }}">
 	<title>Project Sparrow SAMP服務器列表</title>
 </head>

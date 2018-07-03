@@ -10,8 +10,15 @@
 
     <title>Project Sparrow SAMP服務器列表</title>
 
-    <!-- Bootstrap -->
+    
+    {{--
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    --}}
+    <!-- 解决国内范围速度问题，哎没辙 :( -->
+    <!-- Bootstrap -->
+    <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- Custom -->
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <!-- Style -->
