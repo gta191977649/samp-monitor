@@ -23,7 +23,7 @@
         <div class="panel panel-default">
         <div class="panel-heading">提示</div>
         <div class="panel-body">
-            目前没数据!
+        没有找到关于<strong>{{$keywords}}</strong>的相关记录
         </div>
         </div>
     @else

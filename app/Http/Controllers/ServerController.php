@@ -12,10 +12,19 @@ use DB;
 class ServerController extends Controller
 {
     //
+    public function search(Request $req,$keywords = null) {
+        $keywords = $req['keywords'];
+        
+        if(empty($keywords)){
+            $servers = Server::paginate(15);
+            return view("search",compact("servers"));
+        }
+        $servers = Server::where("hostname",'like',$keywords.'%')->orWhere("gamemode",'like',$keywords.'%')->orWhere("map",'like',$keywords.'%')->orWhere("version",'like',$keywords.'%')->paginate(15);
+        return view("search",compact("servers","keywords"));
+    }
     public function index()
     {
         $servers = Auth::user()->servers()->get();
-        
         return view("ucp.server.index",compact('servers'));
     }
     public function indexApi()
@@ -82,6 +91,22 @@ class ServerController extends Controller
         $server = Auth::user()->servers()->find($id);
     
         return view("ucp.server.edit",compact("server"));
+    }
+    
+    public function activate($id)
+    {
+        $server = Auth::user()->servers()->find($id);
+    
+        return view("ucp.server.reactive",compact("server"));
+    }
+    public function activateServer($id)
+    {
+        $server = Auth::user()->servers()->find($id);
+        $server->update([
+            "failTimes" => 0,
+        ]);
+    
+        return redirect()->route("ucp.server.index");
     }
     
     public function detail($id)

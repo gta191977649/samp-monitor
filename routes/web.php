@@ -14,6 +14,9 @@
 Route::get('/','MainController@index')->name('index');
 Route::get('/un','MainController@gtaun')->name('gtaun');
 
+//搜索
+Route::get('/search/{keywords?}','ServerController@search')->name('search');
+
 //Route::get('/cn','MainController@gtaun')->name('index');
 
 
@@ -57,8 +60,10 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/ucp/server/add', 'ServerController@add')->name('ucp.server.add');
     Route::get('/ucp/server/del/{id}', 'ServerController@del')->name('ucp.server.del');
     Route::get('/ucp/server/edit/{id}', 'ServerController@edit')->name('ucp.server.edit');
+    Route::get('/ucp/server/activate/{id}', 'ServerController@activate')->name('ucp.server.activate');
     Route::post('/ucp/server/store', 'ServerController@store')->name('ucp.server.store');
     Route::post('/ucp/server/update/{id}', 'ServerController@update')->name('ucp.server.update');
+    Route::post('/ucp/server/active/{id}', 'ServerController@activateServer')->name('ucp.server.active');
     Route::get('/ucp/server/detail/{id}', 'ServerController@detail')->name('ucp.server.detail');
     
     //UCP API

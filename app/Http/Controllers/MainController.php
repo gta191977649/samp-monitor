@@ -12,12 +12,12 @@ class MainController extends Controller
     //
     public function index()
     {
-        $servers = Server::where("hide" , 0)->paginate(15);;
+        $servers = Server::where("hide" , 0)->paginate(15);
         return view('main',compact('servers'));
     }
     public function gtaun()
     {
-        $servers = Server::where("hide" , 0)->paginate(15);;
+        $servers = Server::where("hide" , 0)->paginate(15);
         return view('un',compact('servers'));
     }
 

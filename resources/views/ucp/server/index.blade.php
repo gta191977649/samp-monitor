@@ -55,8 +55,11 @@
         </td>
 
 	    <td>
-             <a class="text-primary" href="{{route('ucp.server.edit',['id' => $server->id])}}"><i class="fa fa-pencil" aria-hidden="true"></i>修改</a>
+            <a class="text-primary" href="{{route('ucp.server.edit',['id' => $server->id])}}"><i class="fa fa-pencil" aria-hidden="true"></i>修改</a>
             <a class="text-danger" href="{{route('ucp.server.del',['id' => $server->id])}}"><i class="fa fa-trash" aria-hidden="true"></i>删除</a>
+            @if($server->failTimes > 47) 
+            <a class="text-info" href="{{route('ucp.server.activate',['id' => $server->id])}}"><i class="fa fa-repeat" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="如果你想从新激活该服务器，请更新正确的信息"></i>从新激活</a>
+            @endif
         </td>
     </tr>
     {{--
