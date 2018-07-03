@@ -56,21 +56,21 @@
             </div>
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <div class="panel-heading">
                             服务器介绍
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                        <div class="panel-body">
-                            @if($server->description)
-                                {!! $server->description !!}
-                            @else
-                                <p class="text-center text-muted">
-                                    <i class="fa fa-info-circle"></i>
-                                    没有找到相关介绍
-                                </p>
-                            @endif
-                        </div>
+                    
+                    <div class="panel-body">
+                        @if($server->description)
+                            {!! $server->description !!}
+                        @else
+                            <p class="text-center text-muted">
+                                <i class="fa fa-info-circle"></i>
+                                没有找到相关介绍
+                            </p>
+                        @endif
                     </div>
+                   
                 </div>
             </div>
                 <div class="col-md-6">
