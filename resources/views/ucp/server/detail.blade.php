@@ -86,7 +86,7 @@
                                 <tr>
                                     <td>地址:</td>
                                     <td>{{gethostbyname($server->ip)}}:{{$server->port}}
-                                    <img src="https://ipfind.co/flag?ip={{gethostbyname($server->ip)}}&auth=05a106a4-0d26-4a2f-8f1e-b606f7affa2d" width="25" height="25">
+                                    <img src="//api.project-sparrow.ml/ip-country-flag/?ip={{gethostbyname($server->ip)}}">
                                     </td>
                                 </tr>
                                 <tr>
