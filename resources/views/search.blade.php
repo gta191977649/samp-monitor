@@ -5,7 +5,7 @@
     <hr/>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">搜索</h3>
+            <h3 class="panel-title"><i class="fa fa-search" aria-hidden="true"></i> 搜索</h3>
         </div>
         <div class="panel-body">
         <form class="form" action="{{route('search')}}" method="get">

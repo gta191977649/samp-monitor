@@ -5,7 +5,7 @@
     <hr/>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">搜索</h3>
+            <h3 class="panel-title"><i class="fa fa-search" aria-hidden="true"></i> 搜索</h3>
         </div>
         <div class="panel-body">
         <form class="form" action="{{route('search')}}" method="get">
@@ -37,12 +37,13 @@
         <div class="table-responsive">    
             <table class="table table-bordered border-radius">
             <tr>
-                <th>服务器</th>
-                <th>地址</th>
-                <th>模式</th>
-                <th>玩家</th>
-                <th>记录时间</th>
-                <th>状态</th>
+                <th><i class="fa fa-id-card-o" aria-hidden="true"></i>名称</th>
+                <th><i class="fa fa-location-arrow" aria-hidden="true"></i>地址</th>
+                <th><i class="fa fa-info-circle" aria-hidden="true"></i>模式</th>
+                <th><i class="fa fa-user" aria-hidden="true"></i>玩家</th>
+                <th><i class="fa fa-map-marker" data-toggle="tooltip" data-placement="top" title="机房所处国家(根据解析IP判断，有可能不准确)"></i>IDC</th>
+                <th><i class="fa fa-clock-o" aria-hidden="true"></i>记录时间</th>
+                <th><i class="fa fa-check-square" aria-hidden="true"></i>状态</th>
             </tr>
             @foreach($servers as $server)
                 @if($server->failTimes < 48)
@@ -51,14 +52,15 @@
                     <td>{{$server->ip}}:{{$server->port}}</td>
                     <td>{{$server->gamemode}}</td>
                     <td>{{$server->players}}</td>
+                    <td><img src="https://ipfind.co/flag?ip={{gethostbyname($server->ip)}}&auth=05a106a4-0d26-4a2f-8f1e-b606f7affa2d" width="25" height="25"></td>
                     <td><span class="label label-default">{{$server->lastrec}}</span></td>
                     <td>
                         @if($server->timeout == 1)
-                            <span class="label label-danger"><i class="fa fa-times"></i></span>
+                            <span class="text-danger"><i class="fa fa-times"></i></span>
                         @elseif($server->timeout == -1)
-                        <span class="label label-info"><i class="fa fa-clock-o"></i></span>
+                        <span class="text-info"><i class="fa fa-clock-o"></i></span>
                         @else
-                            <span class="label label-success"><i class="fa fa-check"></i></span>
+                            <span class="text-success"><i class="fa fa-check"></i></span>
                         @endif
                     </td>
                 </tr>
