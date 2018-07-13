@@ -77,7 +77,7 @@ return [
     |
     */
 
-    'locale' => 'zh-CN',
+    'locale' => 'zh-HK',
 
     /*
     |--------------------------------------------------------------------------
@@ -178,7 +178,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         // 
         Unisharp\Ckeditor\ServiceProvider::class,
-        
+        Mews\Captcha\CaptchaServiceProvider::class,
+
     ],
 
     /*
@@ -227,6 +228,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
 
     ],
 

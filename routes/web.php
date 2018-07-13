@@ -37,12 +37,16 @@ Route::prefix('api')->group(function () {
     Route::get('/samp/rules/{ip}/port/{port}','SAMPAPIController@rules')->name('api.rules');
     Route::get('/samp/index','ServerController@indexApi')->name('api.index');
 
-
     //图表API
     Route::get('/server/recorddate/{id}/', 'ServerController@recordDateRange')->name('server.recordDateRange');
     Route::get('/server/record/{id}/{date}', 'ServerController@record')->name('server.record');
     //头像
     Route::get('/user/gravator/{email}', 'GravatorController@imgUrl')->name('api.avator');
+
+    //服务器签名API
+    Route::get('/samp/signature/{ip}/port/{port}', 'SignatureAPIController@generate')->name('api.signature');
+
+    
 });
 
 Route::get('/server/detail/{id}', 'ServerController@fontedDetail')->name('server.detail');
