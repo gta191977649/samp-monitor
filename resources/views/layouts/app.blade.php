@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>GTA SAMP服务器导航列表 - Powered by Project Sparrow</title>
+	<title>GTA SA-MP服务器导航列表 - Powered by Project Sparrow</title>
 
     
     {{--
