@@ -16,13 +16,13 @@
 	<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/un.css') }}">
-	<title>GTA SA-MP 服务器导航列表 - Powered by Project Sparrow</title>
+	<title>GTA SA-MP服务器导航列表 - Powered by Project Sparrow</title>
 </head>
 <body>
 
 <div id="header">
 	<div class="wrapper">
-		<h1>SAMP服务器列表</h1>
+		<h1>SA-MP服务器导航列表</h1>
 		
 		<ul>
 			<li><a href="/" title="主页">主页</a></li>

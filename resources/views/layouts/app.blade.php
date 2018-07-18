@@ -41,7 +41,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        SBMP 在线服务器列表 <small>v1.0c<small>
+                        SA-MP服务器导航列表 <small>v1.0c<small>
                     </a>
                 </div>
 
