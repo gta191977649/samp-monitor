@@ -16,7 +16,7 @@
 	<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/un.css') }}">
-	<title>Project Sparrow SAMP服務器列表</title>
+	<title>GTA SAMP服务器导航列表 - Powered by Project Sparrow</title>
 </head>
 <body>
 
